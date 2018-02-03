@@ -1,0 +1,21 @@
+
+body {
+	background: url(https://picsum.photos/1600/800/?random) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100vh;
+}
+.navbar {
+	width: 100vw;
+	height: 12vh;
+	padding-top: 2.2vh;
+	margin-top: 3vh;
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	background-color: 'white';
+	border: none;
+}
