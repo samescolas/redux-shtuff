@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from 'react-bootstrap';
+import styled from 'styled-components';
+import MenuItem from './MenuItem';
 import menu from '../menu.json';
+import { loremIpsum } from '../config';
 
 class Menu extends Component {
 	constructor(props) {
@@ -10,15 +13,21 @@ class Menu extends Component {
 	}
 
 	renderSection(section) {
-		return menu[section].map(item => <Link to={`menu/${section}/${item}`}>{item}</Link>);
+		return menu[section].map(item => <MenuItem label={item} description={loremIpsum(25)} price={'23.00'} />);
 	}
 
 	render() {
+		const Menu = styled.div`
+			margin-top: 20vh;
+		`;
+
 		return (
-			<div>
+			<Menu>
 				<PageHeader>Menu</PageHeader>
-				{ Object.keys(menu).map(section => <li key={section}>{this.renderSection(section)}</li>) }
-			</div>
+				<ul>
+					{ Object.keys(menu).map(section => <li key={section}><h3>{section}</h3><ul>{this.renderSection(section)}</ul></li>) }
+				</ul>
+			</Menu>
 		);
 	}
 }

@@ -20,7 +20,6 @@ class Places extends Component {
 						`https://picsum.photos/400/400/?image=${(Math.random()*80).toFixed(0)}`,
 						`https://picsum.photos/400/400/?image=${(Math.random()*80).toFixed(0)}`,
 						`https://picsum.photos/400/400/?image=${(Math.random()*80).toFixed(0)}`,
-						`https://picsum.photos/400/400/?image=${(Math.random()*80).toFixed(0)}`,
 						`https://picsum.photos/400/400/?image=${(Math.random()*80).toFixed(0)}`
 			]
 		}

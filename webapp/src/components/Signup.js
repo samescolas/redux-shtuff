@@ -1,84 +1,88 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import EmailForm from './forms/EmailForm';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
+import { login } from '../actions';
+import {
+	FormGroup,
+	FormControl,
+	ControlLabel,
+	HelpBlock,
+	Button,
+	PageHeader
+} from 'react-bootstrap';
 
 class Signup extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: '',
+			password: ''
+		};
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      format : /^[-a-z0-9_+.]+@([-a-z0-9_+.])+\.[a-z0-9]{2,63}$/i,
-      duplicate: false
-    }
-  }
-
-  componentDidMount() {
-    console.log(this.props)
-	if (localStorage.getItem("invoiceHomeToken") !== null) {
-		// this.props.history.push("/invoices"); What is this?
-		// Flash you are already signed in
-	} else {
-  		let inputBox = document.getElementById("emailInput");
-    	if (inputBox) {
-      		inputBox.focus();
-		}
+		this.handleChange = this.handleChange.bind(this);
 	}
-  }
 
-  handleChange(event) {
-    this.setState({ 'email' : event.target.value, 'duplicate': false });
-  }
+	handleChange(e) {
+		this.setState({ [e.target.id]: e.target.value });
+	}
 
-  sendData(event) {
-    event.preventDefault();
-    if (!this.state.duplicate && this.state.format.test(this.state.email)) {
-      fetch('https://api.invoicehome.com/api/v1/signup', {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ user: { email: this.state.email } })
-      })
-      .then(response=>{
-        if(response.ok) {
-          return response;
-        }
-        else if (response.status === 409) {
-          this.setState({ 'duplicate': true })
-          throw new Error("email already exists")
-        } else {
-          let errorMessage = `${response.status}, (${response.statusText})`;
-          throw new Error(errorMessage)
-        }
-      })
-      .then(response => response.json())
-      .then(response => {
-        localStorage.setItem("invoiceHomeToken", response.token)
-		window.location.replace("invoices");
-      })
-      .catch(error => console.log(`Error in fetch: ${ error.message }`) )
-    }
-  }
+	emailValidation() {
+		const { email } = this.state;
+		const format = /^[-a-z0-9_+.]+@([-a-z0-9_+.])+\.[a-z0-9]{2,63}$/i;
 
-  render() {
-    return (
-      <form onSubmit={this.sendData.bind(this)}>
-        <div>
-          <h1>Free Plan Sign Up</h1>
-          <h4>Sign up for free and create beautiful PDF invoices in minutes.</h4>
-          <p><strong>Please enter your email address below</strong></p>
-        </div>
-        <EmailForm
-          id="emailInput"
-          onChange={this.handleChange.bind(this)}
-        />
-        <br />
-        <input type="submit" value="Signup" />
-        <p>Have an account already? <Link to="/signin">Sign in here</Link>.</p>
-        <p hidden={!this.state.duplicate}>Email already exists.</p>
-        <br />
-      </form>
-    )
-  }
+		if (format.test(email))
+			return 'success';
+		return 'error';
+	}
+
+	render() {
+		const { email, password } = this.state;
+		const { login } = this.props;
+		const InputContainer = styled.div`
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		`;
+		const FormContainer = styled.div`
+			padding-left: 4vw;
+			margin-top: 20vh;
+			margin-left: 12.5vw;
+			width: 50vw;
+			height: 45vh;
+			background-color: rgba(220, 217, 220, 0.6);
+			border: 1px solid #e2e2e2;
+		`;
+
+		return (
+			<FormContainer>
+				<PageHeader>Sign Up</PageHeader>
+				<InputContainer>
+					<form>
+						<FormGroup
+							validationState={this.emailValidation()}
+						>
+							<ControlLabel>Email</ControlLabel>
+							<FormControl
+								id="email"
+								type="email"
+								value={email}
+								placeholder="example@domain.com"
+								onChange={this.handleChange}
+							/>
+							<FormControl.Feedback />
+						</FormGroup>
+						<Button onClick={login.bind(this, email, password)}>Sign Up</Button>
+					</form>
+				</InputContainer>
+			</FormContainer>
+		);
+	}
 }
 
-export default Signup;
+const mapStateToProps = ({ auth }) => {
+	const { email } = auth;
+
+	return { email };
+};
+
+export default connect(null, { login })(Signup); 

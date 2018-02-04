@@ -62,7 +62,7 @@ class Login extends Component {
 			margin-left: 12.5vw;
 			width: 50vw;
 			height: 45vh;
-			background-color: #f2f2f2;
+			background-color: rgba(220, 217, 220, 0.6);
 			border: 1px solid #e2e2e2;
 		`;
 
