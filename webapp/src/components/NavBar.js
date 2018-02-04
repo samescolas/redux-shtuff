@@ -19,6 +19,20 @@ class NavigationBar extends Component {
 		this.toggleLink = this.toggleLink.bind(this);
 	}
 
+	componentWillMount() {
+		setTimeout(() => {
+			document.addEventListener('scroll', () => {
+				let nav = document.getElementsByClassName('navbar');
+
+				nav[0].style.visibility = (window.scrollY - 40 < 0 ? 'visible' : 'hidden');
+			});
+		}, 500);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('scroll');
+	}
+
 	toggleLink() {
 		const { link, label } = this.state.signUser;
 		

@@ -13,7 +13,7 @@ class Menu extends Component {
 	}
 
 	renderSection(section) {
-		return menu[section].map(item => <MenuItem label={item} description={loremIpsum(25)} price={'23.00'} />);
+		return menu[section].map(item => <MenuItem label={item} description={loremIpsum(50)} price={'23.00'} />);
 	}
 
 	render() {
@@ -25,7 +25,7 @@ class Menu extends Component {
 			<Menu>
 				<PageHeader>Menu</PageHeader>
 				<ul>
-					{ Object.keys(menu).map(section => <li key={section}><h3>{section}</h3><ul>{this.renderSection(section)}</ul></li>) }
+					{ Object.keys(menu).map(section => <div style={{ width: '100%' }}><li key={section}><h3>{section}</h3><ul>{this.renderSection(section)}</ul></li></div>) }
 				</ul>
 			</Menu>
 		);

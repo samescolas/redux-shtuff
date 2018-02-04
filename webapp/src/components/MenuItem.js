@@ -12,27 +12,38 @@ class MenuItem extends Component {
 		const { label, description, price } = this.props;
 		const Item = styled.div`
 			width: 50%;
+			height: 30vh;
+			border: 1px solid indianred;
 			float: left;
 			display: flex;
 			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+		`;
+		const TextDiv = styled.div`
+			text-align: left;
+		`;
+		const ImageDiv = styled.div`
+			text-align: right;
+			vertical-align: center;
 		`;
 		const Image = styled.img`
-			width: 17vmin;
-			height: 17vmin;
+			width: 36vh;
+			height: 30vh;
 		`;
 
 		return (
 			<Item>
-				<div>
-					<h4>{label}</h4>
+				<TextDiv>
+					<h2>{label}</h2>
 					<br />
 					<p>{description}</p>
 					<p>AVAILABLE LATER</p>
 					<em>{price}</em>
-				</div>
-				<div>
-					<Image src={randomImage()} width="100px" height="100px" />
-				</div>
+				</TextDiv>
+				<ImageDiv>
+					<Image src={randomImage()} />
+				</ImageDiv>
 			</Item>
 		);
 	}
