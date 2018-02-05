@@ -12,24 +12,19 @@ class Menu extends Component {
 		super(props);
 		this.state = {
 			active: null,
-			modal: {
-				show: false,
-				item: null
-			}
+			modal: null
 		};
 	}
 
 	renderSection(section) {
 		const ItemContainer = styled.div`
-			width: 49%;
 			flex: 1;
 		`;
 
 		return menu[section].map((item, ix) => {
 			return (
-				<ItemContainer>
+				<ItemContainer key={ix}>
 					<MenuItem
-						key={ix}
 						active={this.state.active == item}
 						onMouseEnter={this.onHover.bind(this, item)}
 						onMouseLeave={this.onLeave.bind(this, item)}
@@ -44,7 +39,7 @@ class Menu extends Component {
 	}
 
 	onClick(item) {
-		this.setState({ modal: { show: true, item } });
+		this.setState({ modal: item });
 	}
 
 	onHover(item) {
@@ -59,16 +54,14 @@ class Menu extends Component {
 	}
 
 	closeModal() {
-		this.setState({ modal: { show: false, item: null } });
+		this.setState({ modal: null });
 	}
 
 	render() {
 		const PageContainer = styled.div`
-			margin: 10vh 0 10vh 5vw;
-			width: 100vw;
+			margin: 10vh;
 		`;
 		const MenuContainer = styled.div`
-			width: 100%;
 			display: flex;
 			flex-direction: column;
 		`;
@@ -99,7 +92,7 @@ class Menu extends Component {
 				<MenuContainer>
 						{ Object.keys(menu).map(section => {
 							return (
-								<div>
+								<div key={section}>
 									<h2>{section}</h2>
 									<SectionContainer>
 										{this.renderSection(section)}
@@ -108,7 +101,7 @@ class Menu extends Component {
 							);
 						}) }
 				</MenuContainer>
-				<MenuItemModal className="modal-container" item={this.state.modal.item} show={this.state.modal.show} closeModal={this.closeModal.bind(this)} />
+				<MenuItemModal item={this.state.modal} show={this.state.modal != null} closeModal={this.closeModal.bind(this)} />
 			</PageContainer>
 		);
 	}

@@ -28,13 +28,12 @@ class App extends Component {
 			<BrowserRouter>
 			  <Provider store={store}>
 				<Container>
-					<NavBar className="navbar" />
-							<Switch >
-								<Route exact path="/" component={Welcome} />
-								<Route path="/login" component={Login} />
-								<Route path="/signup" component={Signup} />
-								<Route path="/menu" component={Menu} />
-							</Switch>
+					<Switch>
+						<Route exact path="/" component={Welcome} />
+						<Route path="/login" component={Login} />
+						<Route path="/signup" component={Signup} />
+						<Route path="/menu" component={Menu} />
+					</Switch>
 				</Container>
 			  </Provider>
 			</BrowserRouter>

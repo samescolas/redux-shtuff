@@ -16,9 +16,10 @@ class MenuItem extends Component {
 	render() {
 		const { label, description, price, active, onMouseEnter, onMouseLeave, onClick } = this.props;
 		const ItemWrapper = styled.div`
-			width: 38vw;
-			height: 24vh;
+			width: 40vw;
+			height: 23vh;
 			border: 1px solid #e2e2e2;
+			box-shadow: 1px 1px rgba(12, 17, 42, 0.2);
 			display: flex;
 			flex-direction: row;
 			justify-content: flex-end;
@@ -30,7 +31,7 @@ class MenuItem extends Component {
 		const TextWrapper = styled.div`
 			width: 60%;
 			height: 100%;
-			background-color: rgba(${active ? 203 : 253}, ${active ? 203 : 253}, ${active ? 203 : 253}, ${active ? 0.8 : 1});
+			background-color: rgba(244, 244, 244);
 			font-size: 1.8vmin;
 			padding-left: 2vmin;
 			padding-top: 2vmin;
