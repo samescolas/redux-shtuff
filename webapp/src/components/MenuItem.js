@@ -23,8 +23,7 @@ class MenuItem extends Component {
 			flex-direction: row;
 			justify-content: flex-end;
 			align-items: center;
-			margin-bottom: 1vh;
-			margin-right: 2vw;
+			margin-bottom: 3vh;
 			cursor: pointer;
 			overflow: hidden;
 		`;

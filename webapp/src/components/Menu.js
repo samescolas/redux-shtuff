@@ -64,9 +64,8 @@ class Menu extends Component {
 
 	render() {
 		const PageContainer = styled.div`
-			margin-top: 20vh;
-			width: 100%;
-			background-color: blue;
+			margin: 10vh 0 10vh 5vw;
+			width: 100vw;
 		`;
 		const MenuContainer = styled.div`
 			width: 100%;
@@ -90,7 +89,8 @@ class Menu extends Component {
 			  flex-end, space-between,
 			  space-around, stretch */
 			align-content: flex-end;
-			margin-bottom: 8vh;
+			margin-top: 4vh;
+			margin-bottom: 6vh;
 		`;
 
 		return (

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import styled from 'styled-components';
 import ReduxThunk from 'redux-thunk';
 import NavBar from './components/NavBar';
 import Welcome from './components/Welcome';
@@ -19,11 +20,14 @@ class App extends Component {
 
 	render() {
 		const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+		const Container = styled.div`
+			width: 100vw;
+		`;
 
 		return (
 			<BrowserRouter>
 			  <Provider store={store}>
-				<div className="container">
+				<Container>
 					<NavBar className="navbar" />
 							<Switch >
 								<Route exact path="/" component={Welcome} />
@@ -31,7 +35,7 @@ class App extends Component {
 								<Route path="/signup" component={Signup} />
 								<Route path="/menu" component={Menu} />
 							</Switch>
-				</div>
+				</Container>
 			  </Provider>
 			</BrowserRouter>
 		);
