@@ -1,7 +1,7 @@
 {
-	"appetizers": [ "salad", "nachos", "hummus", "french fries" ],
-	"dessert": [ "baklava", "yogurt", "pie", "cake" ],
-	"lunch": [ "falafel", "shwarma", "gyro" ],
-	"pizza": [ "cheese", "pepperoni", "buffalo chicken" ],
-	"dinner": [ "falafel", "shwarma", "gyro", "combo", "plate" ]
+	"Appetizers": [ "Salad", "Nachos", "Hummus", "French fries" ],
+	"Dessert": [ "Baklava", "Yogurt", "Pie", "Cake" ],
+	"Lunch": [ "Falafel", "Shwarma", "Gyro" ],
+	"Pizza": [ "Cheese", "Pepperoni", "Buffalo Chicken" ],
+	"Dinner": [ "Falafel", "Shwarma", "Gyro", "Combo", "Plate" ]
 }

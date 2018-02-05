@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
@@ -21,17 +21,19 @@ class App extends Component {
 		const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
 		return (
-		  <Provider store={store}>
-			<div className="container">
-				<NavBar className="navbar" />
-				<Switch >
-					<Route exact path="/" component={Welcome} />
-					<Route path="/login" component={Login} />
-					<Route path="/signup" component={Signup} />
-					<Route path="/menu" component={Menu} />
-				</Switch>
-			</div>
-		  </Provider>
+			<BrowserRouter>
+			  <Provider store={store}>
+				<div className="container">
+					<NavBar className="navbar" />
+							<Switch >
+								<Route exact path="/" component={Welcome} />
+								<Route path="/login" component={Login} />
+								<Route path="/signup" component={Signup} />
+								<Route path="/menu" component={Menu} />
+							</Switch>
+				</div>
+			  </Provider>
+			</BrowserRouter>
 		);
 	}
 }
