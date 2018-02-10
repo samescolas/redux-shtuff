@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown, Dropdown, Glyphicon } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, MenuItem, NavDropdown, Dropdown, Glyphicon, Button, FormGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -41,26 +41,19 @@ class NavigationBar extends Component {
 		const label = /signup/.test(window.location.pathname) ? "Log In" : "Sign Up";
 
 		return (
-			<Navbar>
+			<Navbar fixedTop={true}>
 				<Navbar.Header>
 					<Navbar.Brand>
-					<Link to="/">Tarboosh</Link>
+					<a href="/">Tarboosh</a>
 					</Navbar.Brand>
 				</Navbar.Header>
 				<Nav>
 					<NavItem eventKey={1} href="menu" active={window.location.pathname == "/menu"}>
 						Menu
 					</NavItem>
-					<NavDropdown eventKey={2} title="Dropdown" id="basic-nav-dropdown">
-						<MenuItem eventKey={2.1}>Action</MenuItem>
-						<MenuItem eventKey={2.2}>Another action</MenuItem>
-						<MenuItem eventKey={2.3}>Something else here</MenuItem>
-						<MenuItem divider />
-						<MenuItem eventKey={2.4}>Separated link</MenuItem>
-					</NavDropdown>
 				</Nav>
 				<Nav pullRight={true}>
-					<NavItem eventKey={3} href={link}>
+					<NavItem eventKey={3} href={link} active={link == "signup" ? window.location.pathname == "/login" : window.location.pathname == "/signup"}>
 						{label}
 					</NavItem>
 					<Dropdown id="cart-dropdown">
@@ -69,9 +62,19 @@ class NavigationBar extends Component {
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
 							{cart.items.length > 0 ?
-								cart.items.map((item, ix) => this.renderCartNav(item, 4 + (ix+2 / 10)))
+								[cart.items.map((item, ix) => this.renderCartNav(item, 4 + (ix+2 / 10))),
+								<div>
+									<MenuItem divider={true} />
+									<div className="nav-cart-total">
+										<p>Total</p>
+										<p>{currencyFormat(cart.items.map(item => parseFloat(item.price)).reduce((a, sum) => a+sum, 0))}</p>
+									</div>
+								</div>
+								]
 							:
-								<MenuItem eventKey={4.1}>Your cart is empty.</MenuItem>
+								<div className="nav-cart-total">
+									<p>Your cart is empty.</p>
+								</div>
 							}
 						</Dropdown.Menu>
 					</Dropdown>

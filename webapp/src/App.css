@@ -42,3 +42,14 @@ div.quantity button:disabled {
 .dropdown-menu {
 	width: 33vw;
 }
+
+.nav-cart-total {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 0 1.5vw;
+}
+
+.nav-cart-total:first-child {
+	padding-top: 1vh;
+}
