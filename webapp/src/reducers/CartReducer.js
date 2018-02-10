@@ -33,7 +33,7 @@ export default (state = INITIAL_STATE, action) => {
 		let ix = state.items.findIndex(i => i.label == action.payload.label);
 		let newItems = [];
 		newCounts = { ...state.counts };
-		newCounts[action.payload.label] = state.counts[action.payload.label - 1];
+		newCounts[action.payload.label] = state.counts[action.payload.label] - 1;
 		if (ix >= 0) {
 			newItems = [ ...state.items.slice(0, ix), ...state.items.slice(ix+1) ];
 		}

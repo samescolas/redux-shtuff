@@ -6,7 +6,7 @@ body {
 
 .modal div {
 	border-radius: 0;
-	width: 30vw;
+	width: 420px;
 }
 
 .modal-header {
@@ -16,9 +16,29 @@ body {
 div.quantity {
 	display: flex;
 	flex-direction: row;
-	align-items: space-around;
+	justify-content: space-around;
+	width: auto;
+}
+
+div.quantity .btn-group {
+	width: 60%;
+	padding-top: 0.1vh;
+	padding-left: 1.4vw;
+}
+
+div.quantity .price {
+	width: 30%;
+	text-align: center;
 }
 
 div.quantity button:disabled {
 	cursor: default;
+}
+
+#cart-dropdown {
+	margin-top: 1vh;
+}
+
+.dropdown-menu {
+	width: 33vw;
 }

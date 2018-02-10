@@ -1,81 +1,87 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, MenuItem, NavDropdown, Dropdown, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { addItem } from '../actions';
-import { baseURL } from '../config';
+import { baseURL, currencyFormat } from '../config';
 
 class NavigationBar extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			signUser: {
-				link: "signup",
-				label: "Sign Up"
-			}
-		};
-
-		this.toggleLink = this.toggleLink.bind(this);
 	}
 
-	componentDidMount() {
-		document.addEventListener('scroll', () => {
-			let nav = document.getElementsByClassName('navbar');
-
-			nav[0].style.visibility = (window.scrollY - 40 < 0 ? 'visible' : 'hidden');
-		});
-	}
-
-	componentWillUnmount() {
-		document.removeEventListener('scroll');
-	}
-
-	toggleLink() {
-		const { link, label } = this.state.signUser;
-		
-		if (link == 'signup') {
-			this.setState({ signUser: { link: 'login', label: 'Login' } });
-		} else {
-			this.setState({ signUser: { link: 'signup', label: 'Sign Up' } });
-		}
+	renderCartNav = ({ label, price }, key) => {
+		const LeftText = styled.p`
+			text-align: left;
+		`;
+		const RightText = styled.p`
+			text-align: right;
+		`;
+		const CartItem = styled.div`
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		`;
+		return (
+			<MenuItem eventKey={key} >
+				<CartItem>
+					<LeftText>{label}</LeftText>
+					<RightText>{currencyFormat(price)}</RightText>
+				</CartItem>
+			</MenuItem>
+		)
 	}
 
 	render() {
 		const { cart, addItem } = this.props;
-		const { link, label } = this.state.signUser;
+		console.log(window.location);
+		const link = /signup/.test(window.location.pathname) ? "login" : "signup";
+		const label = /signup/.test(window.location.pathname) ? "Log In" : "Sign Up";
 
 		return (
 			<Navbar>
 				<Navbar.Header>
 					<Navbar.Brand>
-					<a href="#home">React-Bootstrap</a>
+					<Link to="/">Tarboosh</Link>
 					</Navbar.Brand>
 				</Navbar.Header>
 				<Nav>
-					<NavItem eventKey={1} href="#">
-						Link
+					<NavItem eventKey={1} href="menu" active={window.location.pathname == "/menu"}>
+						Menu
 					</NavItem>
-					<NavItem eventKey={2} href="#">
-						Link
-					</NavItem>
-					<NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-						<MenuItem eventKey={3.1}>Action</MenuItem>
-						<MenuItem eventKey={3.2}>Another action</MenuItem>
-						<MenuItem eventKey={3.3}>Something else here</MenuItem>
+					<NavDropdown eventKey={2} title="Dropdown" id="basic-nav-dropdown">
+						<MenuItem eventKey={2.1}>Action</MenuItem>
+						<MenuItem eventKey={2.2}>Another action</MenuItem>
+						<MenuItem eventKey={2.3}>Something else here</MenuItem>
 						<MenuItem divider />
-						<MenuItem eventKey={3.4}>Separated link</MenuItem>
+						<MenuItem eventKey={2.4}>Separated link</MenuItem>
 					</NavDropdown>
+				</Nav>
+				<Nav pullRight={true}>
+					<NavItem eventKey={3} href={link}>
+						{label}
+					</NavItem>
+					<Dropdown id="cart-dropdown">
+						<Dropdown.Toggle>
+							<Glyphicon glyph="shopping-cart" />
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							{cart.items.length > 0 ?
+								cart.items.map((item, ix) => this.renderCartNav(item, 4 + (ix+2 / 10)))
+							:
+								<MenuItem eventKey={4.1}>Your cart is empty.</MenuItem>
+							}
+						</Dropdown.Menu>
+					</Dropdown>
 				</Nav>
 			</Navbar>
 		);
 	}
 }
 
-const mapStateToProps = ({ auth }) => {
-	const { cart } = auth;
-
+const mapStateToProps = ({ cart }) => {
 	return { cart };
 };
 

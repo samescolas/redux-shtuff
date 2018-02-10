@@ -3,7 +3,7 @@ import { Modal, Button, ButtonGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { addItem, removeItem } from '../actions';
-import { loremIpsum } from '../config';
+import { loremIpsum, currencyFormat } from '../config';
 
 class MenuItemModal extends Component {
 
@@ -38,13 +38,16 @@ class MenuItemModal extends Component {
 				</Modal.Body>
 				<Modal.Footer>
 					<div className="quantity">
-						<ButtonGroup>
+						<div className="price">
+							<h5>{currencyFormat(item.price * quantity)}</h5>
+						</div>
+						<ButtonGroup bsSize="small">
 							<Button onClick={removeItem.bind(this, item)}>-</Button>
 							<Button disabled={true}>Quantity: {quantity}</Button>
 							<Button onClick={addItem.bind(this, item)}>+</Button>
 						</ButtonGroup>
+						<Button onClick={() => closeModal()}>Ok</Button>
 					</div>
-					<Button onClick={() => closeModal()}>Ok</Button>
 				</Modal.Footer>
 			</Modal>
 		);
