@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, Glyphicon } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -45,30 +45,30 @@ class NavigationBar extends Component {
 	render() {
 		const { cart, addItem } = this.props;
 		const { link, label } = this.state.signUser;
-		const Container = styled.div`
-			width: 100%;
-			height: 18vh;
-		`;
 
 		return (
-			<Container>
-				<Navbar>
-					<Navbar.Header>
-						<Navbar.Brand>
-							<Link to={link} onClick={this.toggleLink}><Glyphicon glyph="user" /> {label}</Link>
-						</Navbar.Brand>
-						<Navbar.Toggle />
-					</Navbar.Header>
-					<Navbar.Collapse>
-						<Nav pullRight>
-							<Link to="menu">Menu</Link>
-							<NavItem eventKey={2} href="#">
-								No Items
-							</NavItem>
-						</Nav>
-					</Navbar.Collapse>
-				</Navbar>
-			</Container>
+			<Navbar>
+				<Navbar.Header>
+					<Navbar.Brand>
+					<a href="#home">React-Bootstrap</a>
+					</Navbar.Brand>
+				</Navbar.Header>
+				<Nav>
+					<NavItem eventKey={1} href="#">
+						Link
+					</NavItem>
+					<NavItem eventKey={2} href="#">
+						Link
+					</NavItem>
+					<NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+						<MenuItem eventKey={3.1}>Action</MenuItem>
+						<MenuItem eventKey={3.2}>Another action</MenuItem>
+						<MenuItem eventKey={3.3}>Something else here</MenuItem>
+						<MenuItem divider />
+						<MenuItem eventKey={3.4}>Separated link</MenuItem>
+					</NavDropdown>
+				</Nav>
+			</Navbar>
 		);
 	}
 }
