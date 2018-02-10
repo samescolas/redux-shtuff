@@ -3,3 +3,22 @@ body {
 	padding: 0;
 	width: 100vw;
 }
+
+.modal div {
+	border-radius: 0;
+	width: 30vw;
+}
+
+.modal-header {
+	height: 60vh;
+}
+
+div.quantity {
+	display: flex;
+	flex-direction: row;
+	align-items: space-around;
+}
+
+div.quantity button:disabled {
+	cursor: default;
+}

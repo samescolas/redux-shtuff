@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { randomImage } from '../config';
 
 class MenuItem extends Component {
 	constructor(props) {
@@ -14,7 +13,7 @@ class MenuItem extends Component {
 	}
 
 	render() {
-		const { label, description, price, active, onMouseEnter, onMouseLeave, onClick } = this.props;
+		const { label, description, image, price, active, onMouseEnter, onMouseLeave, onClick } = this.props;
 		const ItemWrapper = styled.div`
 			width: 40vw;
 			height: 23vh;
@@ -70,7 +69,7 @@ class MenuItem extends Component {
 						<em>{price}</em>
 					</TextWrapper>
 					<ImageWrapper className="image-wrapper">
-						<Image src={randomImage()} />
+						<Image src={image} />
 						<Overlay className="image-overlay">
 							<OverlayText>Preview</OverlayText>
 						</Overlay>

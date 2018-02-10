@@ -1,10 +1,6 @@
 import {
-  ADD_ITEM_TO_CART
+  ADD_TO_CART
 } from './types';
-
-export const addItem = () => {
-	return { type: ADD_ITEM_TO_CART };
-}
 
 export const login = (email, password) => {
 	console.log(email, password);
@@ -14,5 +10,5 @@ export const login = (email, password) => {
 		console.log("Authentication failure.");
 	}
 
-	return { type: ADD_ITEM_TO_CART };
+	return { type: ADD_TO_CART };
 };

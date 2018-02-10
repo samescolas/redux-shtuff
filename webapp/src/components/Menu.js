@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import MenuItem from './MenuItem';
 import MenuItemModal from './MenuItemModal';
 import menu from '../menu.json';
-import { loremIpsum } from '../config';
+import { loremIpsum, randomImage } from '../config';
 
 class Menu extends Component {
 	constructor(props) {
@@ -31,7 +31,8 @@ class Menu extends Component {
 						onClick={this.onClick.bind(this, { label: item, description: loremIpsum(255), price: (Math.random() * 10).toFixed(2)} )}
 						label={item}
 						description={loremIpsum(255)}
-						price={'23.00'}
+						price={'$' + (Math.random().toFixed(2)*10).toString() + '.' + Math.random().toFixed(2).toString()}
+						image={randomImage()}
 					/>
 				</ItemContainer>
 			);
@@ -39,7 +40,7 @@ class Menu extends Component {
 	}
 
 	onClick(item) {
-		this.setState({ modal: item });
+		this.setState({ modal: { ...item, image: randomImage() } });
 	}
 
 	onHover(item) {
