@@ -9,6 +9,7 @@ import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Menu from './components/Menu';
+import Cart from './components/Cart';
 import reducers from './reducers';
 import './App.css';
 
@@ -35,6 +36,7 @@ class App extends Component {
 							<Route path="/login" component={Login} />
 							<Route path="/signup" component={Signup} />
 							<Route path="/menu" component={Menu} />
+							<Route path="/cart" component={Cart} />
 						</Switch>
 					</Container>
 				</div>

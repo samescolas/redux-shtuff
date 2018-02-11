@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown, Dropdown, Glyphicon, Button, FormGroup, FormControl } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { addItem } from '../actions';
 import { baseURL, currencyFormat } from '../config';
@@ -10,6 +10,9 @@ class NavigationBar extends Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			active: null
+		};
 	}
 
 	renderCartNav = (label, key) => {
@@ -39,7 +42,7 @@ class NavigationBar extends Component {
 
 	render() {
 		const { cart, addItem } = this.props;
-		console.log(window.location);
+		console.log(this.state);
 		const link = /signup/.test(window.location.pathname) ? "login" : "signup";
 		const label = /signup/.test(window.location.pathname) ? "Log In" : "Sign Up";
 
@@ -47,18 +50,22 @@ class NavigationBar extends Component {
 			<Navbar fixedTop={true}>
 				<Navbar.Header>
 					<Navbar.Brand>
-					<a href="/">Tarboosh</a>
+					<LinkContainer to="/" onClick={() => this.setState({ active: null })}><a href="/">Tarboosh</a></LinkContainer>
 					</Navbar.Brand>
 				</Navbar.Header>
 				<Nav>
-					<NavItem eventKey={1} href="menu" active={window.location.pathname == "/menu"}>
-						Menu
-					</NavItem>
+					<LinkContainer to="/menu" onClick={() => this.setState({ active: 'menu' })}>
+						<NavItem eventKey={1} active={this.state.active == 'menu'}>
+							Menu
+						</NavItem>
+					</LinkContainer>
 				</Nav>
 				<Nav pullRight={true}>
-					<NavItem eventKey={3} href={link} active={link == "signup" ? window.location.pathname == "/login" : window.location.pathname == "/signup"}>
-						{label}
-					</NavItem>
+					<LinkContainer to={link} onClick={() => this.setState({ active: link == "login" ? "signup" : "login" })}>
+						<NavItem eventKey={3} active={link == "signup" ? this.state.active == "login" : this.state.active== "signup"}>
+							{label}
+						</NavItem>
+					</LinkContainer>
 					<Dropdown id="cart-dropdown">
 						<Dropdown.Toggle>
 							<Glyphicon glyph="shopping-cart" />
@@ -71,6 +78,10 @@ class NavigationBar extends Component {
 									<div className="nav-cart-total">
 										<p>Total</p>
 										<p>{currencyFormat(cart.items.map(item => parseFloat(item.price)).reduce((a, sum) => a+sum, 0))}</p>
+									</div>
+									<MenuItem divider={true} />
+									<div className="nav-cart-total">
+										<LinkContainer to="cart"><Button type="success">Checkout</Button></LinkContainer>
 									</div>
 								</div>
 								]
