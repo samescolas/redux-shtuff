@@ -12,7 +12,10 @@ class NavigationBar extends Component {
 		super(props);
 	}
 
-	renderCartNav = ({ label, price }, key) => {
+	renderCartNav = (label, key) => {
+		const { counts, items } = this.props.cart;
+		const item = items[items.findIndex(i => i.label == label)];
+		const { price } = item;
 		const LeftText = styled.p`
 			text-align: left;
 		`;
@@ -27,8 +30,8 @@ class NavigationBar extends Component {
 		return (
 			<MenuItem eventKey={key} >
 				<CartItem>
-					<LeftText>{label}</LeftText>
-					<RightText>{currencyFormat(price)}</RightText>
+					<LeftText>{`${label} x ${counts[label]}`}</LeftText>
+					<RightText>{currencyFormat(parseFloat(price)*counts[label])}</RightText>
 				</CartItem>
 			</MenuItem>
 		)
@@ -62,7 +65,7 @@ class NavigationBar extends Component {
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
 							{cart.items.length > 0 ?
-								[cart.items.map((item, ix) => this.renderCartNav(item, 4 + (ix+2 / 10))),
+								[Object.keys(cart.counts).map((key, ix) => this.renderCartNav(key, 4 + (ix+2 / 10))),
 								<div>
 									<MenuItem divider={true} />
 									<div className="nav-cart-total">
