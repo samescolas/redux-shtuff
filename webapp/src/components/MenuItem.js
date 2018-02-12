@@ -17,7 +17,8 @@ class MenuItem extends Component {
 		const ItemWrapper = styled.div`
 			width: 40vw;
 			height: 23vh;
-			border: 1px solid #e2e2e2;
+			border-top: 0.02vmin solid #f2f2f2;
+			border-left: 0.02vmin solid #f2f2f2;
 			box-shadow: 1px 1px rgba(12, 17, 42, 0.2);
 			display: flex;
 			flex-direction: row;
