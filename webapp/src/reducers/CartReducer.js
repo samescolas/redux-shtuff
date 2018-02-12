@@ -30,13 +30,14 @@ export default (state = INITIAL_STATE, action) => {
 			items: [ ...state.items, action.payload ]
 		};
 	case REMOVE_FROM_CART:
-		let ix = state.items.findIndex(i => i.label == action.payload.label);
-		let newItems = [];
 		newCounts = { ...state.counts };
+		let newItems = [];
 		newCounts[action.payload.label] = state.counts[action.payload.label] - 1;
+		let ix = state.items.findIndex(i => i.label == action.payload.label);
 		if (ix >= 0) {
 			newItems = [ ...state.items.slice(0, ix), ...state.items.slice(ix+1) ];
 		}
+			
 		return {
 			...state,
 			counts: newCounts,

@@ -7,6 +7,13 @@ import { loremIpsum, currencyFormat } from '../config';
 
 class MenuItemModal extends Component {
 
+	removeItem(item) {
+		const { counts } = this.props.cart;
+
+		if (counts[item.label] && counts[item.label] > 0)
+			this.props.removeItem(item);
+	}
+
 	render() {
 		const { item, show, closeModal, cart, addItem, removeItem } = this.props;
 		const Image = styled.img`
@@ -42,7 +49,7 @@ class MenuItemModal extends Component {
 							<h5>{currencyFormat(item.price * quantity)}</h5>
 						</div>
 						<ButtonGroup bsSize="small">
-							<Button onClick={removeItem.bind(this, item)}>-</Button>
+							<Button onClick={this.removeItem.bind(this, item)}>-</Button>
 							<Button disabled={true}>Quantity: {quantity}</Button>
 							<Button onClick={addItem.bind(this, item)}>+</Button>
 						</ButtonGroup>
