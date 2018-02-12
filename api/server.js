@@ -1,17 +1,23 @@
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017');
 
 var port = process.env.PORT || 8080;
 
 var router = express.Router();
+var OrdersController = require('./app/controllers/OrdersController');
+var UsersController = require('./app/controllers/UsersController');
+
+app.use(express.json());
 
 router.get('/', function(req, res) {
-	res.json({ message: 'hello, world!' });
+	res.json({ message: 'hello, world!!!' });
 });
+
+router.use('/orders', OrdersController);
+router.use('/users', UsersController);
 
 app.use('/api', router);
 
