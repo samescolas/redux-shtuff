@@ -4,6 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { addItem } from '../actions';
+import menu from '../menu.json';
 import { baseURL, currencyFormat } from '../config';
 
 class NavigationBar extends Component {
@@ -50,7 +51,7 @@ class NavigationBar extends Component {
 			<Navbar fixedTop={true}>
 				<Navbar.Header>
 					<Navbar.Brand>
-					<LinkContainer to="/" onClick={() => this.setState({ active: null })}><a href="/">Tarboosh</a></LinkContainer>
+						<LinkContainer to="/" onClick={() => this.setState({ active: null })}><a href="/">Tarboosh</a></LinkContainer>
 					</Navbar.Brand>
 				</Navbar.Header>
 				<Nav>
@@ -91,6 +92,14 @@ class NavigationBar extends Component {
 								</div>
 							}
 						</Dropdown.Menu>
+						<Dropdown id="filter-dropdown">
+							<Dropdown.Toggle>
+								<Glyphicon glyph="shopping-cart" />
+							</Dropdown.Toggle>
+							<Dropdown.Menu>
+								{Object.keys(menu).map((key, ix) => <LinkContainer to={`/${key.toLowerCase()}`}><MenuItem eventKey={5+(ix+2/10)}>{key}</MenuItem></LinkContainer>)}
+							</Dropdown.Menu>
+						</Dropdown>
 					</Dropdown>
 				</Nav>
 			</Navbar>

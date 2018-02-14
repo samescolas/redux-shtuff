@@ -89,7 +89,6 @@ class Menu extends Component {
 
 		return (
 			<PageContainer>
-				<PageHeader>Menu</PageHeader>
 				<MenuContainer>
 						{ Object.keys(menu).map(section => {
 							return (
