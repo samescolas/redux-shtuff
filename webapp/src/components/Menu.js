@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { PageHeader } from 'react-bootstrap';
 import styled from 'styled-components';
 import MenuItem from './MenuItem';
 import MenuItemModal from './MenuItemModal';
