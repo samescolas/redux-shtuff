@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var menu = require '../resources/menu.json';
+var menu = require('../resources/menu.json');
 
 router.use(express.json());
 

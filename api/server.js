@@ -9,6 +9,7 @@ var port = process.env.PORT || 8080;
 var router = express.Router();
 var OrdersController = require('./app/controllers/OrdersController');
 var UsersController = require('./app/controllers/UsersController');
+var MenuController = require('./app/controllers/MenuController');
 
 app.use(express.json());
 
@@ -18,6 +19,7 @@ router.get('/', function(req, res) {
 
 router.use('/orders', OrdersController);
 router.use('/users', UsersController);
+router.use('/menu', MenuController);
 
 app.use('/api', router);
 
