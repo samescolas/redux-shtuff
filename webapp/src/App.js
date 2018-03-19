@@ -1,46 +1,63 @@
 import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import styled from 'styled-components';
-import thunk from 'redux-thunk';				// middleware to allow async actions
 
-// Components
-import NavBar from './components/NavBar';
-import Welcome from './components/Welcome';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Menu from './components/Menu';
-import Cart from './components/Cart';
+import { auth } from './firebase';
 
-import reducers from './reducers';				// reducers
+import Navbar from './components/navbar/Navbar';
+import Sidenav from './components/navbar/Sidenav';
+import MenuContainer from './components/menu/MenuContainer';
+import Signup from './components/auth/Signup';
+import Signin from './components/auth/Signin';
+import Signout from './components/auth/Signout';
+import Home from './components/Home';
+
+import FirebaseAuth from './components/auth/FirebaseAuth';
 
 import './App.css';
 
-const App = () => {
-	const store = createStore(reducers, {}, applyMiddleware(thunk));
-	const Container = styled.div`
-		width: 100vw;
-	`;
+class App extends Component {
+  constructor(props) {
+  	super(props);
+		this.state = {
+			user: null
+		};
+  }
 
-	return (
-		<BrowserRouter>
-		  <Provider store={store}>
-			<div>
-				<NavBar />
-				<Container>
-					<Switch>
-						<Route exact path="/" component={Welcome} />
-						<Route path="/login" component={Login} />
-						<Route path="/signup" component={Signup} />
-						<Route path="/menu" component={Menu} />
-						<Route path="/cart" component={Cart} />
-					</Switch>
-				</Container>
-			</div>
-		  </Provider>
-		</BrowserRouter>
-	);
+  componentDidMount() {
+  	auth.onAuthStateChanged((user) => {
+			this.setState({ user });
+		});
+  }
+
+  renderRouteWithUser = (C, path, exact=false) => {
+  	if (exact)
+			return <Route exact path={path} component={() => <C user={this.state.user} />} />;
+		else
+			return <Route path={path} component={() => <C user={this.state.user} />} />;
+  }
+
+  render() {
+    return (
+				<BrowserRouter>
+					<div>
+						<Sidenav user={this.state.user} />
+						<div id="main">
+							<Navbar user={this.state.user} />
+							<Switch>
+								{ /* This is super ugly and needs to be fixed */ }
+								{this.renderRouteWithUser(Home, '/', true)}
+								{this.renderRouteWithUser(Home, '/home')}
+								{this.renderRouteWithUser(MenuContainer, '/menu')}
+								{this.renderRouteWithUser(Signup, '/signup')}
+								{this.renderRouteWithUser(Signin, '/signin')}
+								{this.renderRouteWithUser(Signout, '/signout')}
+								<Route path='/fuckoff' component={FirebaseAuth} />
+							</Switch>
+						</div>
+					</div>
+				</BrowserRouter>
+    );
+  }
 }
 
 export default App;

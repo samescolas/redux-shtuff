@@ -1,55 +1,28 @@
-body {
-	margin: 0;
-	padding: 0;
-	width: 100vw;
+.App {
+  text-align: center;
 }
 
-.modal div {
-	border-radius: 0;
-	width: 420px;
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
 }
 
-.modal-header {
-	height: 60vh;
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
 }
 
-div.quantity {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	width: auto;
+#main {
+	height: 100vh;
 }
 
-div.quantity .btn-group {
-	width: 60%;
-	padding-top: 0.1vh;
-	padding-left: 1.4vw;
+.App-intro {
+  font-size: large;
 }
 
-div.quantity .price {
-	width: 30%;
-	text-align: center;
-}
-
-div.quantity button:disabled {
-	cursor: default;
-}
-
-#cart-dropdown {
-	margin-top: 1vh;
-}
-
-.dropdown-menu {
-	width: 33vw;
-}
-
-.nav-cart-total {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	padding: 0 1.5vw;
-}
-
-.nav-cart-total:first-child {
-	padding-top: 1vh;
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

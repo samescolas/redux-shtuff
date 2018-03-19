@@ -1,7 +1,0 @@
-{
-	"Appetizers": [ "Salad", "Nachos", "Hummus", "French fries" ],
-	"Dessert": [ "Baklava", "Yogurt", "Pie", "Cake" ],
-	"Lunch": [ "Falafel", "Shwarma", "Gyro" ],
-	"Pizza": [ "Cheese", "Pepperoni", "Buffalo Chicken" ],
-	"Dinner": [ "Falafel", "Shwarma", "Gyro", "Combo", "Plate" ]
-}
