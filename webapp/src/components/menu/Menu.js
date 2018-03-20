@@ -1,42 +1,48 @@
 import React from 'react';
-
-const displaySubmenu = (menu) => {
-	return (
-		<div>
-			<h2>{menu.labels.displayName}</h2>
-			<p>{menu.labels.description}</p>
-			{menu.items.map(i => {
-				return (
-					<div key={i.itemId}>
-						<h5>{i.labels.displayName}</h5>
-						<h6>{i.labels.description}</h6>
-					</div>
-				);
-			})}
-		</div>
-	)
-};
-
-const displayMenu = (menu) => {
-	return (
-		<div>
-			<h1>{menu.labels.displayName}</h1>
-			<h3>{menu.labels.description}</h3>
-			<ul>
-				{Object.keys(menu.menuLists).map(m => <li key={m}>{displaySubmenu(menu.menuLists[m])}</li>)}
-			</ul>
-		</div>
-	);
-};
+import styled from 'styled-components';
+import Submenu from './Submenu';
 
 const Menu = (props) => {
-	if (props.menu == null) {
+	const { menu } = props;
+	const MenuContainer = styled.div`
+	`;
+	const Title = styled.h1`
+		font-size: 5vmin;
+		text-align: center;
+		color: #333;
+	`;
+	const Subtitle = styled.h3`
+		font-size: 2em;
+		text-align: center;
+	`;
+	const MenuList = styled.ul`
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	`;
+	const MenuItem = styled.li`
+	`;
+
+	if (menu == null) {
 		return (
 			<h1>Closed</h1>
 		);
-	} else {
-		return displayMenu(props.menu);
 	}
+	return (
+		<MenuContainer>
+			<Title>{menu.labels.displayName}</Title>
+			<Subtitle>{menu.labels.description}</Subtitle>
+			<MenuList>
+				{Object.keys(menu.menuLists).map(m => {
+					return (
+						<MenuItem key={m}>
+							<Submenu menu={menu.menuLists[m]} />
+						</MenuItem>
+					);
+				})}
+			</MenuList>
+		</MenuContainer>
+	);
 };
 
 export default Menu;

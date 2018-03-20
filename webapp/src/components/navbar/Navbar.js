@@ -33,7 +33,7 @@ class Navbar extends Component {
 		}
 		const NavItem = styled.div`
 			height: 13vh;
-			width: 22vmin;
+			width: 22%;
 			font-size: 3vmin;
 			float: right;
 			transition: background-color 0.42s ease-out, color 0.7s ease-out;
@@ -68,7 +68,7 @@ class Navbar extends Component {
 		const { user } = this.props;
 		const NavListContainer = styled.div`
 			height: 13vh;
-			width: 58vmin;
+			width: 58%;
 			margin-right: 8vmin;
 			float: right;
 			background-color: #900000;
@@ -102,7 +102,7 @@ class Navbar extends Component {
 
 	render() {
 		const NavContainer = styled.div`
-			width: 100vw;
+			width: 100%;
 			height: 13vh;
 			background-color: #900000;
 			font-family: 'Spectral SC', serif;
@@ -116,7 +116,7 @@ class Navbar extends Component {
 		`;
 		const LogoContainer = styled.div`
 			height: 13vh;
-			width: 33vmin;
+			width: 33%;
 			float: left;
 		`;
 		const NavLink = styled.a`

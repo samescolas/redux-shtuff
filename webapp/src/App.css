@@ -16,6 +16,8 @@
 
 #main {
 	height: 100vh;
+	width: 99vw;
+	overflow-y: scroll;
 }
 
 .App-intro {
