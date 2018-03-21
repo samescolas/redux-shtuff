@@ -5,6 +5,8 @@ import Submenu from './Submenu';
 const Menu = (props) => {
 	const { menu } = props;
 	const MenuContainer = styled.div`
+		width: 80%;
+		float: right;
 	`;
 	const Title = styled.h1`
 		font-size: 5vmin;

@@ -98,7 +98,7 @@ class Sidenav extends Component {
 			position: absolute;
 			font-size: 4vmin;
 			top: 4vh;
-			right: 3vmin;
+			right: 3vw;
 			&:hover {
 				cursor: pointer;
 			}
