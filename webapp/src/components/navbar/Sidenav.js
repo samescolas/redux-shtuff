@@ -78,7 +78,7 @@ class Sidenav extends Component {
 			height: 100%;
 			width: 0;
 			position: fixed;
-			z-index: 1;
+			z-index: 42;
 			top: 0;
 			right: 0;
 			background-color: #111;
@@ -102,6 +102,7 @@ class Sidenav extends Component {
 			&:hover {
 				cursor: pointer;
 			}
+			z-index: 42;
 		`;
 		return (
 			<div>

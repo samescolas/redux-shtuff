@@ -107,6 +107,8 @@ class Navbar extends Component {
 			background-color: #900000;
 			font-family: 'Spectral SC', serif;
 			box-shadow: 2px 1px 5px black;
+			position: fixed;
+			z-index: 17;
 		`;
 		const NavLogo = styled.h2`
 			color: #c9c9c9;

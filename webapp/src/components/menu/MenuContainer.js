@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Menu from './Menu';
+import CategoryList from './CategoryList';
 import { getMenu } from '../../requests';
 
 class MenuContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			menu: null
+			menu: null,
+			filtered: null
 		};
 	}
 
@@ -15,8 +17,18 @@ class MenuContainer extends Component {
 		.then(menu => this.setState({ menu }));
 	}
 
+	filterMenu = (filtered) => {
+		this.setState({ filtered });
+	}
+
 	render() {
-		return <Menu menu={this.state.menu} />;
+		const { filtered, menu } = this.state;
+		return (
+			<div>
+				<CategoryList menu={menu} filterMenu={this.filterMenu} />
+				<Menu menu={filtered ? filtered : menu} />
+			</div>
+		)
 	}
 };
 

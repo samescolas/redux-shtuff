@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import MenuItem from './MenuItem';
 
 const Submenu = ({ menu }) => {
 	const SectionContainer = styled.div`
@@ -25,19 +26,6 @@ const Submenu = ({ menu }) => {
 		display: flex;
 		flex-wrap: wrap;
 	`;
-	const MenuItem = styled.div`
-		width: 40%;
-		@media (max-width: 900px) {
-			width: 80%;
-			margin-left: 0;
-		};
-		margin-left: 5%;
-		margin-top: 2%;
-		&:nth-child(odd) {
-			margin-left: 0;
-		};
-		padding-left: 5%;
-	`;
 	return (
 		<SectionContainer>
 			<TitleContainer>
@@ -47,10 +35,7 @@ const Submenu = ({ menu }) => {
 			<MenuItemContainer>
 				{menu.items.map(i => {
 					return (
-						<MenuItem key={i.itemId}>
-							<p><strong>{i.labels.displayName}</strong></p>
-							<p><em>{i.labels.description}</em></p>
-						</MenuItem>
+						<MenuItem key={i.itemId} item={i} />
 					);
 				})}
 			</MenuItemContainer>
