@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "firebase": "^4.10.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-firebaseui": "^1.1.9",
+    "react-icons": "^2.2.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "0.9.5",

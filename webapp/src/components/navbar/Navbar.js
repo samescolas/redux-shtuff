@@ -12,9 +12,38 @@ class Navbar extends Component {
 		};
 	}
 
+	componentDidMount() {
+		document.addEventListener('keydown', this.onKeypress);
+	}
+
 	componentWillUpdate(nextProps) {
 		if (this.props.location.pathname !== nextProps.location.pathname) {
 			this.setState({ currentPage: nextProps.location.pathname.slice(1) });
+		}
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.onKeypress);
+	}
+
+	onKeypress = (e) => {
+		if (e.target.type === undefined) {
+			if (e.key === 'm') {
+				this.props.history.push('menu');
+				e.preventDefault();
+			} else if (e.key === 'h') {
+				this.props.history.push('/');
+				e.preventDefault();
+			} else if (e.key === 'p' && this.props.user !== null) {
+				this.props.history.push('profile');
+				e.preventDefault();
+			} else if (this.props.user === null && e.key === 's' && window.location.pathname.slice(1) !== 'signup') {
+				this.props.history.push('signup');
+				e.preventDefault();
+			} else if (this.props.user === null && e.key === 's') {
+				this.props.history.push('signin');
+				e.preventDefault();
+			}
 		}
 	}
 
@@ -68,14 +97,14 @@ class Navbar extends Component {
 		const { user } = this.props;
 		const NavListContainer = styled.div`
 			height: 13vh;
-			width: 58%;
-			margin-right: 8vmin;
+			width: 50%;
+			margin-right: 8vw;
 			float: right;
 			background-color: #900000;
 		`;
 		let userLink;	
 		if (user != null) {
-			userLink = 'Sign Out';
+			userLink = 'Profile';
 		} else if (this.state.currentPage === 'signup') {
 			userLink = 'Sign In';
 		} else {
@@ -93,8 +122,8 @@ class Navbar extends Component {
 		  */
 		return (
 		  <NavListContainer>
-			{user == null ? this.renderLink(userLink.toLowerCase().replace(' ', ''), userLink, 2) : null}
-			{user == null ? null : this.renderLink(userLink.toLowerCase().replace(' ', ''), userLink, 2)}
+				{user == null ? this.renderLink(userLink.toLowerCase().replace(' ', ''), userLink, 2) : null}
+				{user == null ? null : this.renderLink(userLink.toLowerCase().replace(' ', ''), userLink, 2)}
 		  	{this.renderLink('menu', 'Menu', 1)}
 		  </NavListContainer>
 		);
@@ -118,7 +147,7 @@ class Navbar extends Component {
 		`;
 		const LogoContainer = styled.div`
 			height: 13vh;
-			width: 33%;
+			width: 40%;
 			float: left;
 		`;
 		const NavLink = styled.a`
@@ -133,9 +162,9 @@ class Navbar extends Component {
 		return (
 		  <NavContainer>
 			  <NavLink href="/" onClick={(e) => this.redirectTo('/', e)}>
-				<LogoContainer>
-					<NavLogo>Food<Emphasis>Fighters</Emphasis></NavLogo>
-				</LogoContainer>
+					<LogoContainer>
+						<NavLogo>Food<Emphasis>Fighters</Emphasis></NavLogo>
+					</LogoContainer>
 			  </NavLink>
 			  {this.renderLinks()}
 		  </NavContainer>

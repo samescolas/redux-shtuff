@@ -20,6 +20,14 @@
 	overflow-y: scroll;
 }
 
+#menu-container {
+	transition: .5s .1s;
+}
+
+#category-list {
+	transition: .5s;
+}
+
 .App-intro {
   font-size: large;
 }

@@ -34,7 +34,9 @@ class Signin extends Component {
 
 	signInUser = (email, password) => {
 		auth.signInWithEmailAndPassword(this.state.email, this.state.pass1)
-		.then(this.props.history.push('home'))
+		.then((s) => {
+			this.props.history.push('home');
+		})
 		.catch(err => {
 			this.setState({ errors: Object.assign(this.state.errors, { pass1: 'Invalid login credentials.' })});
 		});

@@ -8,7 +8,8 @@ class MenuContainer extends Component {
 		super(props);
 		this.state = {
 			menu: null,
-			filtered: null
+			filteredMenu: null,
+			filter: null
 		};
 	}
 
@@ -17,16 +18,30 @@ class MenuContainer extends Component {
 		.then(menu => this.setState({ menu }));
 	}
 
-	filterMenu = (filtered) => {
-		this.setState({ filtered });
+	filterMenu = (filter) => {
+		if (filter === null) {
+			this.setState({ filter: null, filteredMenu: null });
+		} else {
+			this.setState({
+				filter,
+				filteredMenu: {
+					labels: { ...this.state.menu.labels },
+					menuLists: [ {...this.state.menu.menuLists[filter] }]
+				}
+			});
+		}
 	}
 
 	render() {
-		const { filtered, menu } = this.state;
+		const { filteredMenu, menu } = this.state;
 		return (
 			<div>
-				<CategoryList menu={menu} filterMenu={this.filterMenu} />
-				<Menu menu={filtered ? filtered : menu} />
+				<CategoryList
+					menu={menu}
+					filter={this.state.filter}
+					filterMenu={this.filterMenu}
+				/>
+				<Menu menu={filteredMenu ? filteredMenu : menu} />
 			</div>
 		)
 	}

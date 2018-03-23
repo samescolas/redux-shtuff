@@ -4,7 +4,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { auth } from './firebase';
 
 import Navbar from './components/navbar/Navbar';
-import Sidenav from './components/navbar/Sidenav';
+import Cart from './components/navbar/Cart';
 import MenuContainer from './components/menu/MenuContainer';
 import Signup from './components/auth/Signup';
 import Signin from './components/auth/Signin';
@@ -40,19 +40,22 @@ class App extends Component {
     return (
 				<BrowserRouter>
 					<div>
-						<Sidenav user={this.state.user} />
+						<Cart user={this.state.user} />
 						<div id="main">
 							<Navbar user={this.state.user} />
-							<Switch>
-								{ /* This is super ugly and needs to be fixed */ }
-								{this.renderRouteWithUser(Home, '/', true)}
-								{this.renderRouteWithUser(Home, '/home')}
-								{this.renderRouteWithUser(MenuContainer, '/menu')}
-								{this.renderRouteWithUser(Signup, '/signup')}
-								{this.renderRouteWithUser(Signin, '/signin')}
-								{this.renderRouteWithUser(Signout, '/signout')}
-								<Route path='/fuckoff' component={FirebaseAuth} />
-							</Switch>
+							{ /* Add padding to account for fixed position navbar */}
+							<div style={{ paddingTop: '13vh' }}>
+								<Switch>
+									{ /* This is super ugly and needs to be fixed */ }
+									{this.renderRouteWithUser(Home, '/', true)}
+									{this.renderRouteWithUser(Home, '/home')}
+									{this.renderRouteWithUser(MenuContainer, '/menu')}
+									{this.renderRouteWithUser(Signup, '/signup')}
+									{this.renderRouteWithUser(Signin, '/signin')}
+									{this.renderRouteWithUser(Signout, '/signout')}
+									<Route path='/fuckoff' component={FirebaseAuth} />
+								</Switch>
+							</div>
 						</div>
 					</div>
 				</BrowserRouter>
