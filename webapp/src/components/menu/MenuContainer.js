@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Menu from './Menu';
 import CategoryList from './CategoryList';
+import { connect } from 'react-redux';
 import { getMenu } from '../../requests';
 
 class MenuContainer extends Component {
@@ -34,6 +35,7 @@ class MenuContainer extends Component {
 
 	render() {
 		const { filteredMenu, menu } = this.state;
+
 		return (
 			<div>
 				<CategoryList
@@ -47,4 +49,8 @@ class MenuContainer extends Component {
 	}
 };
 
-export default MenuContainer;
+const mapStateToProps = ({ auth }) => {
+	return { auth };
+};
+
+export default connect(mapStateToProps, {})(MenuContainer);

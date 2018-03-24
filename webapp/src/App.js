@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
+/*
+	createStore lets us create one central location for our state
+	applyMiddleware will be useful later on..
+*/
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+
+import thunk from 'redux-thunk';
+
 import { auth } from './firebase';
+
+import UserContainer from './components/auth/UserContainer';
 
 import Navbar from './components/navbar/Navbar';
 import Cart from './components/navbar/Cart';
@@ -10,6 +21,8 @@ import Signup from './components/auth/Signup';
 import Signin from './components/auth/Signin';
 import Signout from './components/auth/Signout';
 import Home from './components/Home';
+
+import reducers from './reducers';
 
 import FirebaseAuth from './components/auth/FirebaseAuth';
 
@@ -23,11 +36,13 @@ class App extends Component {
 		};
   }
 
+	/*
   componentDidMount() {
   	auth.onAuthStateChanged((user) => {
 			this.setState({ user });
 		});
   }
+	*/
 
   renderRouteWithUser = (C, path, exact=false) => {
   	if (exact)
@@ -37,27 +52,33 @@ class App extends Component {
   }
 
   render() {
+		const store = createStore(reducers, {}, applyMiddleware(thunk));
+
     return (
 				<BrowserRouter>
-					<div>
-						<Cart user={this.state.user} />
-						<div id="main">
-							<Navbar user={this.state.user} />
-							{ /* Add padding to account for fixed position navbar */}
-							<div style={{ paddingTop: '13vh' }}>
-								<Switch>
-									{ /* This is super ugly and needs to be fixed */ }
-									{this.renderRouteWithUser(Home, '/', true)}
-									{this.renderRouteWithUser(Home, '/home')}
-									{this.renderRouteWithUser(MenuContainer, '/menu')}
-									{this.renderRouteWithUser(Signup, '/signup')}
-									{this.renderRouteWithUser(Signin, '/signin')}
-									{this.renderRouteWithUser(Signout, '/signout')}
-									<Route path='/fuckoff' component={FirebaseAuth} />
-								</Switch>
-							</div>
+					<Provider store={store}>
+						<div>
+							<UserContainer>
+								<Cart user={this.state.user} />
+								<div id="main">
+									<Navbar user={this.state.user} />
+									{ /* Add padding to account for fixed position navbar */}
+									<div style={{ paddingTop: '13vh' }}>
+										<Switch>
+											{ /* This is super ugly and needs to be fixed */ }
+											{this.renderRouteWithUser(Home, '/', true)}
+											{this.renderRouteWithUser(Home, '/home')}
+											{this.renderRouteWithUser(MenuContainer, '/menu')}
+											{this.renderRouteWithUser(Signup, '/signup')}
+											{this.renderRouteWithUser(Signin, '/signin')}
+											{this.renderRouteWithUser(Signout, '/signout')}
+											<Route path='/fuckoff' component={FirebaseAuth} />
+										</Switch>
+									</div>
+								</div>
+							</UserContainer>
 						</div>
-					</div>
+					</Provider>
 				</BrowserRouter>
     );
   }

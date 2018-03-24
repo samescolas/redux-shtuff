@@ -17,19 +17,11 @@ class Cart extends Component {
 
 
 	closeNav = () => {
-		let catList = document.getElementById("category-list")
 		let menuContainer = document.getElementById("menu-container");
-		let filter = document.getElementById("filter-container");
 
-		if (catList) {
-			catList.style.width="17vw";
-		}
 		if (menuContainer) {
 			menuContainer.style.width = "80%";
 			menuContainer.style.marginRight = "0";
-		}
-		if (filter) {
-			filter.style.color = "rgba(96, 10, 2, 0)";
 		}
 		document.getElementById("cart-container").style.width = "0";
 		document.getElementById("cart-btn").style.color = "#600a02";
@@ -42,19 +34,14 @@ class Cart extends Component {
 		let catList = document.getElementById("category-list");
 		let sideNav = document.getElementById("cart-container");
 		let menuContainer = document.getElementById("menu-container");
-		let filter = document.getElementById("filter-container");
 
-		if (catList) {
-			catList.style.width="0";
-		}
 		if (sideNav) {
 			sideNav.style.width = "300px";
 		}
-		if (filter) {
-			filter.style.color = "rgba(96, 10, 2, 1)";
-		}
 		if (menuContainer) {
-			menuContainer.style.width = "100%";
+			if (!catList.style.width || parseFloat(catList.style.width) <= 1) {
+				menuContainer.style.width = "100%";
+			}
 			menuContainer.style.marginRight = "10%";
 		}
 
@@ -170,7 +157,7 @@ class Cart extends Component {
 			<div>
 				<CartButton id="cart-btn" onClick={this.toggleCart}><ShoppingCart /></CartButton>
 				<Container id="cart-container">
-					<CloseButton href="" onClick={this.closeNav}>&times;</CloseButton>
+					<CloseButton href="" onClick={(e) => { e.preventDefault(); this.closeNav(); }}>&times;</CloseButton>
 					{ this.renderLinks() }
 				</Container>
 			</div>

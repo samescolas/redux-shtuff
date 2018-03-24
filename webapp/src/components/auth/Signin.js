@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { auth } from '../../firebase';
+import { authorize_user } from '../../actions';
 
 class Signin extends Component {
 	constructor(props) {
@@ -13,12 +15,16 @@ class Signin extends Component {
 		}
 	}
 
-	componentDidMount() {
-		let email = document.getElementById("email");
+	componentWillMount() {
+		const { isLoggedIn } = this.props.auth;
 		
-		if (this.props.user != null) {
+		if (isLoggedIn) {
 			this.props.history.push('home');
 		}
+	}
+
+	componentDidMount() {
+		let email = document.getElementById("email");
 
 		if (email){
 			email.focus();
@@ -35,6 +41,7 @@ class Signin extends Component {
 	signInUser = (email, password) => {
 		auth.signInWithEmailAndPassword(this.state.email, this.state.pass1)
 		.then((s) => {
+			authorize_user(s);
 			this.props.history.push('home');
 		})
 		.catch(err => {
@@ -104,11 +111,15 @@ class Signin extends Component {
 					<input style={InputStyle} id="pass1" type="password" placeholder="Password" value={this.state.pass1} onChange={(e) => this.onChangeText(e)} />
 					<br />
 					{ this.state.errors.pass1 ? <ErrorMessage>{this.state.errors.pass1}</ErrorMessage> : null }
-					<input style={SubmitStyle} type="submit" value="Sign In" onClick={(e) => this.onSubmit(e)} />
+					<input style={SubmitStyle} type="submit" value="Sign In" onClick={this.onSubmit} />
 				</form>
 			</div>
 		);
 	}
 };
 
-export default withRouter(Signin);
+const mapStateToProps = ({ auth }) => {
+	return { auth };
+};
+
+export default connect(mapStateToProps, {})(withRouter(Signin));
