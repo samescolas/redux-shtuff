@@ -21,6 +21,7 @@ import Signup from './components/auth/Signup';
 import Signin from './components/auth/Signin';
 import Signout from './components/auth/Signout';
 import Home from './components/Home';
+import Profile from './components/Profile';
 
 import reducers from './reducers';
 
@@ -59,23 +60,23 @@ class App extends Component {
 					<Provider store={store}>
 						<div>
 							<UserContainer>
-								<Cart user={this.state.user} />
-								<div id="main">
-									<Navbar user={this.state.user} />
-									{ /* Add padding to account for fixed position navbar */}
-									<div style={{ paddingTop: '13vh' }}>
-										<Switch>
-											{ /* This is super ugly and needs to be fixed */ }
-											{this.renderRouteWithUser(Home, '/', true)}
-											{this.renderRouteWithUser(Home, '/home')}
-											{this.renderRouteWithUser(MenuContainer, '/menu')}
-											{this.renderRouteWithUser(Signup, '/signup')}
-											{this.renderRouteWithUser(Signin, '/signin')}
-											{this.renderRouteWithUser(Signout, '/signout')}
-											<Route path='/fuckoff' component={FirebaseAuth} />
-										</Switch>
-									</div>
+							<Cart user={this.state.user} />
+							<div id="main">
+								<Navbar user={this.state.user} />
+								{ /* Add padding to account for fixed position navbar */}
+								<div style={{ paddingTop: '13vh' }}>
+									<Switch>
+										<Route path='/profile' component={Profile} />
+									</Switch>
+									<Switch>
+										<Route path='/home' component={Home} />
+										<Route path='/menu' component={MenuContainer} />
+										<Route path='/signin' component={FirebaseAuth} />
+										<Route path='/signup' component={FirebaseAuth} />
+										<Route path='/signout' component={Signout} />
+									</Switch>
 								</div>
+							</div>
 							</UserContainer>
 						</div>
 					</Provider>
