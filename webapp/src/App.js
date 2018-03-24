@@ -29,60 +29,34 @@ import FirebaseAuth from './components/auth/FirebaseAuth';
 
 import './App.css';
 
-class App extends Component {
-  constructor(props) {
-  	super(props);
-		this.state = {
-			user: null
-		};
-  }
+const App = () => {
+	const store = createStore(reducers, {}, applyMiddleware(thunk));
 
-	/*
-  componentDidMount() {
-  	auth.onAuthStateChanged((user) => {
-			this.setState({ user });
-		});
-  }
-	*/
-
-  renderRouteWithUser = (C, path, exact=false) => {
-  	if (exact)
-			return <Route exact path={path} component={() => <C user={this.state.user} />} />;
-		else
-			return <Route path={path} component={() => <C user={this.state.user} />} />;
-  }
-
-  render() {
-		const store = createStore(reducers, {}, applyMiddleware(thunk));
-
-    return (
-				<BrowserRouter>
-					<Provider store={store}>
-						<div>
-							<UserContainer>
-							<Cart user={this.state.user} />
-							<div id="main">
-								<Navbar user={this.state.user} />
-								{ /* Add padding to account for fixed position navbar */}
-								<div style={{ paddingTop: '13vh' }}>
-									<Switch>
-										<Route path='/profile' component={Profile} />
-									</Switch>
-									<Switch>
-										<Route path='/home' component={Home} />
-										<Route path='/menu' component={MenuContainer} />
-										<Route path='/signin' component={FirebaseAuth} />
-										<Route path='/signup' component={FirebaseAuth} />
-										<Route path='/signout' component={Signout} />
-									</Switch>
-								</div>
+	return (
+			<BrowserRouter>
+				<Provider store={store}>
+						<UserContainer>
+						<Cart user={{}} />
+						<div id="main">
+							<Navbar user={{}} />
+							{ /* Add padding to account for fixed position navbar */}
+							<div style={{ paddingTop: '13vh' }}>
+								<Switch>
+									<Route path='/profile' component={Profile} />
+								</Switch>
+								<Switch>
+									<Route path='/home' component={Home} />
+									<Route path='/menu' component={MenuContainer} />
+									<Route path='/signin' component={FirebaseAuth} />
+									<Route path='/signup' component={FirebaseAuth} />
+									<Route path='/signout' component={Signout} />
+								</Switch>
 							</div>
-							</UserContainer>
 						</div>
-					</Provider>
-				</BrowserRouter>
-    );
-  }
+						</UserContainer>
+				</Provider>
+			</BrowserRouter>
+	);
 }
 
 export default App;

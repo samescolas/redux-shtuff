@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 class Navbar extends Component {
@@ -94,7 +95,7 @@ class Navbar extends Component {
 	}
 
 	renderLinks = () => { 
-		const { user } = this.props;
+		const { isLoggedIn } = this.props.auth;
 		const NavListContainer = styled.div`
 			height: 13vh;
 			width: 50%;
@@ -103,7 +104,7 @@ class Navbar extends Component {
 			background-color: #900000;
 		`;
 		let userLink;	
-		if (user != null) {
+		if (isLoggedIn) {
 			userLink = 'Profile';
 		} else if (this.state.currentPage === 'signup') {
 			userLink = 'Sign In';
@@ -111,19 +112,10 @@ class Navbar extends Component {
 			userLink = 'Sign Up';
 		}
 
-		  /*
-		  <NavListContainer>
-			{[userLink, 'Menu'].map((label, ix) => {
-				let link = label.toLowerCase().replace(' ', '');
-
-				return this.renderLink(link, label, ix)
-			})}
-		  </NavListContainer>
-		  */
 		return (
 		  <NavListContainer>
-				{user == null ? this.renderLink(userLink.toLowerCase().replace(' ', ''), userLink, 2) : null}
-				{user == null ? null : this.renderLink(userLink.toLowerCase().replace(' ', ''), userLink, 2)}
+				{!isLoggedIn  ? this.renderLink(userLink.toLowerCase().replace(' ', ''), userLink, 2) : null}
+				{!isLoggedIn ? null : this.renderLink(userLink.toLowerCase().replace(' ', ''), userLink, 2)}
 		  	{this.renderLink('menu', 'Menu', 1)}
 		  </NavListContainer>
 		);
@@ -172,4 +164,8 @@ class Navbar extends Component {
 	}
 }
 
-export default withRouter(Navbar);
+const mapStateToProps = ({ auth }) => {
+	return { auth };
+};
+
+export default withRouter(connect(mapStateToProps, {})(Navbar));
