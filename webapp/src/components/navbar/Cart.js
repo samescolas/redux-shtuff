@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toggleCart } from '../../actions';
 import styled from 'styled-components';
 import ShoppingCart from 'react-icons/lib/fa/shopping-cart';
 
@@ -15,19 +17,28 @@ class Cart extends Component {
 		document.removeEventListener('keydown', this.onPressEscape);
 	}
 
+	shouldComponentUpdate(nextProps, nextState) {
+		return (
+			this.props.appStatus.filterOpen === nextProps.appStatus.filterOpen &&
+			this.props.appStatus.cartOpen === nextProps.appStatus.cartOpen
+		);
+	}
+
 
 	closeNav = () => {
 		let menuContainer = document.getElementById("menu-container");
 
 		if (menuContainer) {
 			menuContainer.style.width = "80%";
-			menuContainer.style.marginRight = "0";
+			//menuContainer.style.marginRight = "0";
 		}
 		document.getElementById("cart-container").style.width = "0";
 		document.getElementById("cart-btn").style.color = "#600a02";
 		document.getElementById("main").removeEventListener('click', this.onLoseFocus);
 		document.removeEventListener('keydown', this.onPressWhenOpen);
 		document.addEventListener('keydown', this.onPressWhenClosed);
+		//setTimeout(() => { this.props.toggleCart() }, 400);
+		this.props.toggleCart();
 	}
 
 	openNav = () => {
@@ -39,16 +50,18 @@ class Cart extends Component {
 			sideNav.style.width = "300px";
 		}
 		if (menuContainer) {
-			if (!catList.style.width || parseFloat(catList.style.width) <= 1) {
+			if (parseFloat(catList.offsetWidth) <= 1) {
 				menuContainer.style.width = "100%";
 			}
-			menuContainer.style.marginRight = "10%";
+			//menuContainer.style.marginRight = "10%";
 		}
 
 		document.getElementById("main").addEventListener('click', this.onLoseFocus);
 		document.getElementById("cart-btn").style.color = "white";
 		document.removeEventListener('keydown', this.onPressWhenClosed);
 		document.addEventListener('keydown', this.onPressWhenOpen);
+		//setTimeout(() => { this.props.toggleCart() }, 600);
+		this.props.toggleCart();
 	}
 
 	onCloseClick = (e) => {
@@ -80,7 +93,7 @@ class Cart extends Component {
 	toggleCart = () => {
 		let cart = document.getElementById("cart-container");
 
-		if (cart && parseFloat(cart.style.width) > 1) {
+		if (cart && parseFloat(cart.offsetWidth) > 1) {
 			this.closeNav();
 		} else if (cart) {
 			this.openNav();
@@ -94,7 +107,7 @@ class Cart extends Component {
 			font-size: 25px;
 			color: #818181;
 			display: block;
-			transition: 0.3s;
+			transition: 0.5s;
 			&:hover {
 				color: #f1f1f1;
 			}
@@ -120,7 +133,7 @@ class Cart extends Component {
 	render() {
 		const Container = styled.div`
 			height: 87vh;
-			width: 0;
+			width: ${this.props.appStatus.cartOpen ? '300px' : '0'};
 			position: fixed;
 			z-index: 17;
 			top: 13vh;
@@ -147,8 +160,8 @@ class Cart extends Component {
 				cursor: pointer;
 			}
 			z-index: 42;
-			color: #600a02;
-			transition: color .4s;
+			color: ${this.props.appStatus.cartOpen ? 'white' : '#600a02'};
+			transition: color .5s;
 		`;
 
 		if (this.props.user === null)
@@ -165,4 +178,8 @@ class Cart extends Component {
 	}
 };
 
-export default withRouter(Cart);
+const mapStateToProps = ({ appStatus }) => {
+	return { appStatus };
+};
+
+export default withRouter(connect(mapStateToProps, { toggleCart })(Cart));

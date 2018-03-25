@@ -35,13 +35,13 @@ class Navbar extends Component {
 			} else if (e.key === 'h') {
 				this.props.history.push('/');
 				e.preventDefault();
-			} else if (e.key === 'p' && this.props.user !== null) {
+			} else if (e.key === 'p' && this.props.auth.isLoggedIn) {
 				this.props.history.push('profile');
 				e.preventDefault();
-			} else if (this.props.user === null && e.key === 's' && window.location.pathname.slice(1) !== 'signup') {
+			} else if (!this.props.auth.isLoggedIn && e.key === 's' && window.location.pathname.slice(1) !== 'signup') {
 				this.props.history.push('signup');
 				e.preventDefault();
-			} else if (this.props.user === null && e.key === 's') {
+			} else if (!this.props.auth.isLoggedIn && e.key === 's') {
 				this.props.history.push('signin');
 				e.preventDefault();
 			}

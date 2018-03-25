@@ -2,7 +2,7 @@ import {
 	ADD_ITEM
 } from './types';
 
-export const add_item = (item) => {
+export const addItem = (item) => {
 	return {
 		type: ADD_ITEM,
 		payload: item

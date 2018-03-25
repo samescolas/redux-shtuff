@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { toggleFilter } from '../../actions';
 import styled from 'styled-components';
 import FaFilter from 'react-icons/lib/fa/filter';
 import FaClose from 'react-icons/lib/fa/close';
@@ -9,13 +11,20 @@ class CategoryList extends Component {
 		document.addEventListener('keydown', this.onKeypressWhenClosed);
 	}
 
+	shouldComponentUpdate(nextProps, nextState) {
+		return (
+			this.props.appStatus.filterOpen === nextProps.appStatus.filterOpen &&
+			this.props.appStatus.cartOpen === nextProps.appStatus.cartOpen
+		);
+	}
+
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.onKeypressWhenOpen);
 		document.removeEventListener('keydown', this.onKeypressWhenClosed);
 	}
 
 	onKeypressWhenOpen = (e) => {
-		const { filter, filterMenu, menu } = this.props;
+		const { filterMenu, menu, filter } = this.props;
 
 		if (e.key === 'f') {
 			this.closeList();
@@ -66,11 +75,9 @@ class CategoryList extends Component {
 		if (e.target.innerHTML.toLowerCase() === 'all') {
 			filterMenu(null);
 			e.preventDefault();
-			this.openList();
 		} else {
 			filterMenu(e.target.innerHTML.toLowerCase());
 			e.preventDefault();
-			this.openList();
 		}
 	};
 
@@ -82,7 +89,7 @@ class CategoryList extends Component {
 		if (list) {
 			list.style.width = "0";
 		}
-		if (parseFloat(cart.style.width) > 0) {
+		if (parseFloat(cart.offsetWidth) > 0) {
 			document.getElementById("menu-container").style.width = "100%";
 		}
 		if (filter) {
@@ -90,6 +97,7 @@ class CategoryList extends Component {
 		}
 		document.removeEventListener('keydown', this.onKeypressWhenOpen);
 		document.addEventListener('keydown', this.onKeypressWhenClosed);
+		this.props.toggleFilter();
 	};
 
 	openList = () => {
@@ -100,7 +108,7 @@ class CategoryList extends Component {
 		if (list) {
 			list.style.width = "17%";
 		}
-		if (parseFloat(cart.style.width) > 0) {
+		if (parseFloat(cart.offsetWidth) > 0) {
 			let menuContainer = document.getElementById("menu-container");
 				menuContainer.style.width = "80%";
 		}
@@ -109,6 +117,7 @@ class CategoryList extends Component {
 		}
 		document.removeEventListener('keydown', this.onKeypressWhenClosed);
 		document.addEventListener('keydown', this.onKeypressWhenOpen);
+		this.props.toggleFilter();
 	}
 
 	renderList = () => {
@@ -135,9 +144,9 @@ class CategoryList extends Component {
 	};
 
 	render() {
-		const { menu } = this.props;
+		const { menu, appStatus } = this.props;
 		const Container = styled.div`
-			width: 0;
+			width: ${appStatus.filterOpen ? '17%' : '0'};
 			height: 100vh;
 			float: left;
 			background-color: #600a02;
@@ -182,7 +191,7 @@ class CategoryList extends Component {
 	
 		return (
 			<div>
-				<FilterContainer id="filter-container"><FaFilter onClick={this.openList} /></FilterContainer>
+				<FilterContainer id="filter-container"><FaFilter onClick={(e) => { e.preventDefault(); this.openList(); }} /></FilterContainer>
 				<Container id="category-list">
 					<CloseContainer><FaClose onClick={this.closeList}/></CloseContainer>
 					<Title>{menu.labels.displayName}</Title>
@@ -196,4 +205,8 @@ class CategoryList extends Component {
 	}
 };
 
-export default CategoryList;
+const mapStateToProps = ({ appStatus }) =>{
+	return { appStatus };
+};
+
+export default connect(mapStateToProps, { toggleFilter })(CategoryList);

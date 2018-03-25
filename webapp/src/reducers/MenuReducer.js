@@ -15,7 +15,6 @@ if (hr < 11) {
 
 const INITIAL_STATE = {
 	meal,
-	filter: null,
 	filteredMenu: null
 };
 
@@ -32,7 +31,6 @@ export default (state=INITIAL_STATE, action) => {
 
 			return {
 				...state,
-				filter: action.payload,
 				filteredMenu: {
 					labels: {...state.labels},
 					menuLists: [{...filtered}]

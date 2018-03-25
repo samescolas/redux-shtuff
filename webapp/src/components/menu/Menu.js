@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import Submenu from './Submenu';
 
 const Menu = (props) => {
-	const { menu } = props;
+	const { menu, cart } = props;
 	const MenuContainer = styled.div`
-		width: 80%;
+		width: ${props.appStatus.cartOpen ? (props.appStatus.filterOpen ? '80%' : '100%') : '80%'};
 		float: right;
 	`;
 	const MenuList = styled.ul`
 		list-style-type: none;
 		margin: 0;
+		marginRight: ${props.appStatus.cartOpen ? '15%' : '0'};
 		padding: 0;
 	`;
 	const MenuItem = styled.li`
@@ -27,7 +28,7 @@ const Menu = (props) => {
 				{Object.keys(menu.menuLists).map(m => {
 					return (
 						<MenuItem key={m}>
-							<Submenu menu={menu.menuLists[m]} />
+							<Submenu cart={cart} menu={menu.menuLists[m]} addItem={props.addItem} />
 						</MenuItem>
 					);
 				})}

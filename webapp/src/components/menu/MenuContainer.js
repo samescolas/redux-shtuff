@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Menu from './Menu';
 import CategoryList from './CategoryList';
 import { connect } from 'react-redux';
-import { getMenu, filterMenu } from '../../actions';
+import { getMenu, filterMenu, addItem } from '../../actions';
 
 class MenuContainer extends Component {
 
@@ -18,6 +18,13 @@ class MenuContainer extends Component {
 		this.props.getMenu()
 		.then(() => this.setState({ loading: false }))
 		.catch(error => this.setState({ error }));
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		return (
+			this.props.appStatus.filterOpen === nextProps.appStatus.filterOpen &&
+			this.props.appStatus.cartOpen === nextProps.appStatus.cartOpen
+		);
 	}
 
 /*
@@ -40,9 +47,15 @@ class MenuContainer extends Component {
 		this.props.filterMenu(filter);
 	}
 
-	render() {
-		const { menu } = this.props;
+	addItem = (item) => {
 
+		console.log(item);
+		this.props.addItem(item);
+	}
+
+	render() {
+		const { menu, appStatus, cart } = this.props;
+		
 		if (this.state.loading) {
 			return null;
 		}
@@ -50,17 +63,22 @@ class MenuContainer extends Component {
 			<div>
 				<CategoryList
 					menu={menu.priceLists[menu.meal]}
-					filter={menu.filter}
+					filter={appStatus.filter}
 					filterMenu={this.filterMenu}
 				/>
-				<Menu menu={menu.filteredMenu || menu.priceLists[menu.meal]} />
+				<Menu
+					appStatus={appStatus}
+					menu={menu.filteredMenu || menu.priceLists[menu.meal]}
+					addItem={this.addItem}
+					cart={cart}
+				/>
 			</div>
 		)
 	}
 };
 
-const mapStateToProps = ({ auth, menu }) => {
-	return { auth, menu };
+const mapStateToProps = ({ auth, menu, appStatus, cart }) => {
+	return { auth, menu, appStatus, cart };
 };
 
-export default connect(mapStateToProps, { getMenu, filterMenu })(MenuContainer);
+export default connect(mapStateToProps, { getMenu, filterMenu, addItem })(MenuContainer);

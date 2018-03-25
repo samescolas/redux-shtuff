@@ -49,13 +49,17 @@ const MenuItem = (props) => {
 		bottom: 0;
 		right: 31%;
 	`
+	const Order = styled.p`
+		text-align: left;
+	`;
 
 	return (
-			<Container>
+			<Container onClick={(e) => { e.preventDefault(); props.addItem(props.item)}}>
 				<TextSection>
 					<Name>{props.item.labels.displayName}</Name>
 					<Description>{props.item.labels.description}</Description>
 					<Price>{props.item.price.toString()}</Price>
+					<Order>{props.count}</Order>
 				</TextSection>
 				<TempImg />
 			</Container>
