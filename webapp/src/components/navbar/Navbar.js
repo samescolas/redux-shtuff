@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import logo from '../../logo.png';
 
 class Navbar extends Component {
 
@@ -67,8 +68,8 @@ class Navbar extends Component {
 			font-size: 3vmin;
 			float: right;
 			transition: background-color 0.42s ease-out, color 0.7s ease-out;
-			background-color: ${active ? '#b20000' : '#900000'};
-			color: ${active ? '#d2d2d2' : '#c3c3c3'};
+			background-color: ${active ? '#b20000' : 'white'};
+			color: ${active ? '#d2d2d2' : '#900000'};
 			text-shadow: ${active ? '1px 1px 2px' : ''};
 			&:hover {
 				background-color: #b20000;
@@ -101,7 +102,7 @@ class Navbar extends Component {
 			width: 50%;
 			margin-right: 8vw;
 			float: right;
-			background-color: #900000;
+			background-color: white;
 		`;
 		let userLink;	
 		if (isLoggedIn) {
@@ -125,22 +126,21 @@ class Navbar extends Component {
 		const NavContainer = styled.div`
 			width: 100%;
 			height: 13vh;
-			background-color: #900000;
+			background-color: white;
 			font-family: 'Spectral SC', serif;
 			box-shadow: 2px 1px 5px black;
 			position: fixed;
 			z-index: 17;
 		`;
-		const NavLogo = styled.h2`
-			color: #c9c9c9;
-			font-size: 4.2vmin;
-			text-shadow: 1px 2px 2px #2e2e2e;
-			padding-left: 2vw;
-		`;
 		const LogoContainer = styled.div`
 			height: 13vh;
 			width: 40%;
 			float: left;
+			padding-left: 5px;
+		`;
+		const Logo = styled.img`
+			height: 100%;
+			width: auto;
 		`;
 		const NavLink = styled.a`
 			text-decoration: none;
@@ -155,7 +155,7 @@ class Navbar extends Component {
 		  <NavContainer>
 			  <NavLink href="/" onClick={(e) => this.redirectTo('/', e)}>
 					<LogoContainer>
-						<NavLogo>Food<Emphasis>Fighters</Emphasis></NavLogo>
+						<Logo src={logo} />
 					</LogoContainer>
 			  </NavLink>
 			  {this.renderLinks()}
