@@ -145,12 +145,6 @@ class Navbar extends Component {
 		const NavLink = styled.a`
 			text-decoration: none;
 		`;
-		const Emphasis = styled.span`
-			color: #ff1712;
-			font-weight: boldest;
-			font-size: 4.3vmin;
-			text-shadow: 3px 3px 4px #660033;
-		`;
 		return (
 		  <NavContainer>
 			  <NavLink href="/" onClick={(e) => this.redirectTo('/', e)}>

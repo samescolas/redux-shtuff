@@ -2,6 +2,7 @@ import {
 	SET_MENU,
 	FILTER_MENU
 } from './types';
+import { getRandomImage } from '../helpers';
 
 const BASE_URL = 'https://restaurant-44353.firebaseio.com';
 
@@ -9,14 +10,28 @@ export const getMenu = () => (dispatch) => {
 	return new Promise(function(resolve, reject) {
 		fetch(`${BASE_URL}/menu.json`)
 		.then(res => res.json())
-		.then(res => {
+		.then(menu => {
+			Object.keys(menu).forEach(m => {
+				Object.keys(menu[m]).forEach(s => {
+					Object.keys(menu[m][s].menuLists).forEach(c => {
+						menu[m][s].menuLists[c].items.map(i => {
+							let newItem = Object.assign(i, {imageURL: getRandomImage()});
+							return newItem;
+						})
+					})
+				})
+			});
+
+			return menu;
+		})
+		.then(menu => {
 			dispatch({
 				type: SET_MENU,
-				payload: res
+				payload: menu
 			});
-			return res;
+			return menu;
 		})
-		.then(res => resolve(res))
+		.then(menu => resolve(menu))
 		.catch(err => reject(err));
 	});
 };

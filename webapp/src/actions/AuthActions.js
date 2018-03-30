@@ -1,4 +1,3 @@
-import { auth } from '../firebase';
 import {
 	AUTHORIZE_USER
 } from './types';

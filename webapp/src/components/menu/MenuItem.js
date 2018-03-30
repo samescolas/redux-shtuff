@@ -29,10 +29,9 @@ const MenuItem = (props) => {
 		height: 100%;
 		font-size: 1.9vmin;
 	`;
-	const TempImg = styled.div`
+	const Image = styled.img`
 		width: 30%;
 		height: 100%;
-		background-color: indianred;
 	`;
 	const Name = styled.p`
 		font-weight: bold;
@@ -61,7 +60,7 @@ const MenuItem = (props) => {
 					<Price>{props.item.price.toString()}</Price>
 					<Order>{props.count}</Order>
 				</TextSection>
-				<TempImg />
+				<Image src={props.item.imageURL} />
 			</Container>
 	);
 }
