@@ -63,12 +63,12 @@ class Navbar extends Component {
 			active = false;
 		}
 		const NavItem = styled.div`
-			height: 13vh;
+			height: 7vh;
 			width: 22%;
-			font-size: 3vmin;
+			font-size: 2vmin;
 			float: right;
 			transition: background-color 0.42s ease-out, color 0.7s ease-out;
-			background-color: ${active ? '#b20000' : 'white'};
+			background-color: ${active ? '#b20000' : '#f3f3f3'};
 			color: ${active ? '#d2d2d2' : '#900000'};
 			text-shadow: ${active ? '1px 1px 2px' : ''};
 			&:hover {
@@ -82,7 +82,6 @@ class Navbar extends Component {
 			text-decoration: none;
 		`;
 		const LinkText = styled.p`
-			padding-top: 1.7vh;
 			text-align: center;
 		`;
 		
@@ -98,11 +97,11 @@ class Navbar extends Component {
 	renderLinks = () => { 
 		const { isLoggedIn } = this.props.auth;
 		const NavListContainer = styled.div`
-			height: 13vh;
+			height: 7vh;
 			width: 50%;
 			margin-right: 8vw;
 			float: right;
-			background-color: white;
+			background-color: #f3f3f3;
 		`;
 		let userLink;	
 		if (isLoggedIn) {
@@ -125,15 +124,15 @@ class Navbar extends Component {
 	render() {
 		const NavContainer = styled.div`
 			width: 100%;
-			height: 13vh;
-			background-color: white;
+			height: 7vh;
+			background-color: #f3f3f3;
 			font-family: 'Spectral SC', serif;
-			box-shadow: 2px 1px 5px black;
+			box-shadow: 2px 1px 2px #333;
 			position: fixed;
 			z-index: 17;
 		`;
 		const LogoContainer = styled.div`
-			height: 13vh;
+			height: 7vh;
 			width: 40%;
 			float: left;
 			padding-left: 5px;

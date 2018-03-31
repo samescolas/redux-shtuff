@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Submenu from './Submenu';
 
 const Menu = (props) => {
-	const { menu, cart } = props;
+	const { menu, cart, openModal, closeModal, selectItem } = props;
 	const MenuContainer = styled.div`
 		width: ${props.appStatus.cartOpen ? (props.appStatus.filterOpen ? '80%' : '100%') : '80%'};
 		float: right;
@@ -28,7 +28,13 @@ const Menu = (props) => {
 				{Object.keys(menu.menuLists).map(m => {
 					return (
 						<MenuItem key={m}>
-							<Submenu cart={cart} menu={menu.menuLists[m]} addItem={props.addItem} />
+							<Submenu
+								openModal={openModal}
+								closeModal={closeModal}
+								cart={cart}
+								menu={menu.menuLists[m]}
+								selectItem={selectItem}
+							/>
 						</MenuItem>
 					);
 				})}

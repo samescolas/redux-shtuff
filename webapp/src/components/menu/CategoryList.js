@@ -106,7 +106,7 @@ class CategoryList extends Component {
 		let cart = document.getElementById("cart-container");
 
 		if (list) {
-			list.style.width = "17%";
+			list.style.width = "9%";
 		}
 		if (parseFloat(cart.offsetWidth) > 0) {
 			let menuContainer = document.getElementById("menu-container");
@@ -130,7 +130,7 @@ class CategoryList extends Component {
 				height: 5vh;
 				padding-top: 2vh;
 				list-style-type: none;
-				padding-left: 2.5vw;
+				padding-left: 1.5vw;
 				background-color: ${active ? '#b20000' : null};
 				font-weight: ${active ? 'bold' : null};
 			`;
@@ -146,12 +146,12 @@ class CategoryList extends Component {
 	render() {
 		const { menu, appStatus } = this.props;
 		const Container = styled.div`
-			width: ${appStatus.filterOpen ? '17%' : '0'};
+			width: ${appStatus.filterOpen ? '9%' : '0'};
 			height: 100vh;
 			float: left;
 			background-color: #600a02;
 			overflow: hidden;
-			top: 13vh;
+			top: 7vh;
 			position: fixed;
 			display: flex;
 			flex-direction: column;
@@ -166,12 +166,13 @@ class CategoryList extends Component {
 		const Title = styled.h3`
 			width: 90%;
 			height: 10%;
-			padding-left: 2vw;
+			padding-left: 1vw;
 			font-size: 4vmin;
 			float: left;
 		`;
 		const FilterContainer = styled.span`
 			position: fixed;
+			top: 8vh;
 			font-size: 3vmin;
 			padding: 0.5%;
 			cursor: pointer;

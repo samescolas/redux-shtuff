@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import MenuItem from './MenuItem';
 
-const Submenu = ({ menu, addItem, cart }) => {
+const Submenu = ({ menu, cart, openModal, closeModal, selectItem }) => {
 	const SectionContainer = styled.div`
 		margin-top: 10px;
 		padding: 2vmin;
@@ -38,7 +38,14 @@ const Submenu = ({ menu, addItem, cart }) => {
 			<MenuItemContainer>
 				{menu.items.map(i => {
 					return (
-						<MenuItem count={count(i)} addItem={addItem} key={i.itemId} item={i} />
+						<MenuItem
+							count={count(i)}
+							key={i.itemId}
+							item={i}
+							openModal={openModal}
+							closeModal={closeModal}
+							selectItem={selectItem}
+						/>
 					);
 				})}
 			</MenuItemContainer>

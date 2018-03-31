@@ -1,6 +1,7 @@
 import {
 	SET_MENU,
-	FILTER_MENU
+	FILTER_MENU,
+	SELECT_MENU_ITEM
 } from './types';
 import { getRandomImage } from '../helpers';
 
@@ -40,5 +41,12 @@ export const filterMenu = (filter) => {
 	return {
 		type: FILTER_MENU,
 		payload: filter
+	};
+};
+
+export const selectMenuItem = (item) => {
+	return {
+		type: SELECT_MENU_ITEM,
+		payload: item
 	};
 };

@@ -37,7 +37,6 @@ class Cart extends Component {
 		document.getElementById("main").removeEventListener('click', this.onLoseFocus);
 		document.removeEventListener('keydown', this.onPressWhenOpen);
 		document.addEventListener('keydown', this.onPressWhenClosed);
-		//setTimeout(() => { this.props.toggleCart() }, 400);
 		this.props.toggleCart();
 	}
 
@@ -57,10 +56,9 @@ class Cart extends Component {
 		}
 
 		document.getElementById("main").addEventListener('click', this.onLoseFocus);
-		document.getElementById("cart-btn").style.color = "white";
+		document.getElementById("cart-btn").style.color = "#f3f3f3";
 		document.removeEventListener('keydown', this.onPressWhenClosed);
 		document.addEventListener('keydown', this.onPressWhenOpen);
-		//setTimeout(() => { this.props.toggleCart() }, 600);
 		this.props.toggleCart();
 	}
 
@@ -132,11 +130,11 @@ class Cart extends Component {
 
 	render() {
 		const Container = styled.div`
-			height: 87vh;
+			height: 93vh;
 			width: ${this.props.appStatus.cartOpen ? '300px' : '0'};
 			position: fixed;
 			z-index: 17;
-			top: 13vh;
+			top: 7vh;
 			right: 0;
 			background-color: #600a02;
 			overflow-x: hidden;
@@ -154,13 +152,13 @@ class Cart extends Component {
 		const CartButton = styled.span`
 			position: absolute;
 			font-size: 4vmin;
-			top: 4vh;
+			top: 1.2vh;
 			right: 3vw;
 			&:hover {
 				cursor: pointer;
 			}
 			z-index: 42;
-			color: ${this.props.appStatus.cartOpen ? 'white' : '#600a02'};
+			color: ${this.props.appStatus.cartOpen ? '#f3f3f3' : '#600a02'};
 			transition: color .5s;
 		`;
 

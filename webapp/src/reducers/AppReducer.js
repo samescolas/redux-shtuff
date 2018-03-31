@@ -1,13 +1,15 @@
 import {
 	TOGGLE_CART,
 	TOGGLE_FILTER,
-	FILTER_MENU
+	FILTER_MENU,
+	TOGGLE_MENU_ITEM_MODAL
 } from '../actions/types';
 
 const INITIAL_STATE = {
 	filterOpen: false,
 	filter: null,
-	cartOpen: false
+	cartOpen: false,
+	menuItemModalOpen: false,
 };
 
 export default (state=INITIAL_STATE, action) => {
@@ -18,6 +20,8 @@ export default (state=INITIAL_STATE, action) => {
 			return { ...state, filterOpen: !state.filterOpen };
 		case FILTER_MENU:
 			return { ...state, filter: action.payload };
+		case TOGGLE_MENU_ITEM_MODAL:
+			return { ...state, menuItemModalOpen: !state.menuItemModalOpen };
 		default:
 			return state;
 	};

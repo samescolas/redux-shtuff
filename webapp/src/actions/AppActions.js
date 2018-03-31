@@ -1,6 +1,7 @@
 import {
 	TOGGLE_CART,
-	TOGGLE_FILTER
+	TOGGLE_FILTER,
+	TOGGLE_MENU_ITEM_MODAL,
 } from './types';
 
 export const toggleCart = () => {
@@ -9,4 +10,8 @@ export const toggleCart = () => {
 
 export const toggleFilter = () => {
 	return { type: TOGGLE_FILTER };
+}
+
+export const toggleMenuItemModal = () => {
+	return { type: TOGGLE_MENU_ITEM_MODAL };
 }

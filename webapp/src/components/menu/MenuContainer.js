@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import Menu from './Menu';
-import CategoryList from './CategoryList';
 import { connect } from 'react-redux';
-import { getMenu, filterMenu, addItem } from '../../actions';
+import {
+	getMenu,
+	filterMenu,
+	addItem,
+	removeItem,
+	toggleMenuItemModal,
+	selectMenuItem,
+} from '../../actions';
+
+import CategoryList from './CategoryList';
+import MenuItemModal from './MenuItemModal';
 
 class MenuContainer extends Component {
 
@@ -48,13 +57,29 @@ class MenuContainer extends Component {
 	}
 
 	addItem = (item) => {
-
-		console.log(item);
 		this.props.addItem(item);
 	}
 
+	removeItem = (item) => {
+		this.props.removeItem(item);
+	}
+
+	openModal = () => {
+		let modal = document.getElementById("menu-item-modal");
+		this.props.toggleMenuItemModal();
+
+		if (modal) {
+			modal.style.display = "block";
+		}
+	};
+
+	closeModal = () => {
+		this.props.toggleMenuItemModal();
+		document.getElementById("menu-item-modal").style.display = "none";
+	};
+
 	render() {
-		const { menu, appStatus, cart } = this.props;
+		const { menu, appStatus, cart, selectMenuItem } = this.props;
 		
 		if (this.state.loading) {
 			return null;
@@ -69,8 +94,17 @@ class MenuContainer extends Component {
 				<Menu
 					appStatus={appStatus}
 					menu={menu.filteredMenu || menu.priceLists[menu.meal]}
-					addItem={this.addItem}
 					cart={cart}
+					openModal={this.openModal}
+					selectItem={selectMenuItem}
+				/>
+				<MenuItemModal
+					isOpen={appStatus.menuItemModalOpen}
+					close={this.closeModal}
+					item={menu.selected}
+					cart={cart}
+					addItem={this.addItem}
+					removeItem={this.removeItem}
 				/>
 			</div>
 		)
@@ -81,4 +115,4 @@ const mapStateToProps = ({ auth, menu, appStatus, cart }) => {
 	return { auth, menu, appStatus, cart };
 };
 
-export default connect(mapStateToProps, { getMenu, filterMenu, addItem })(MenuContainer);
+export default connect(mapStateToProps, { getMenu, filterMenu, addItem, toggleMenuItemModal, selectMenuItem, removeItem })(MenuContainer);

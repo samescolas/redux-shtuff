@@ -1,6 +1,7 @@
 import {
 	SET_MENU,
-	FILTER_MENU
+	FILTER_MENU,
+	SELECT_MENU_ITEM
 } from '../actions/types';
 
 const hr = (new Date()).getHours();
@@ -15,13 +16,16 @@ if (hr < 11) {
 
 const INITIAL_STATE = {
 	meal,
-	filteredMenu: null
+	filteredMenu: null,
+	selected: null,
 };
 
 export default (state=INITIAL_STATE, action) => {
 	switch (action.type) {
 		case SET_MENU:
 			return { ...action.payload, ...state };
+		case SELECT_MENU_ITEM:
+			return { ...state, selected: action.payload };
 		case FILTER_MENU:
 			if (action.payload === null) {
 				return { ...state, filter: null, filteredMenu: null };

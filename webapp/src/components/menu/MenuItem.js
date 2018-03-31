@@ -52,8 +52,15 @@ const MenuItem = (props) => {
 		text-align: left;
 	`;
 
+	const onClick = (e) => {
+		e.preventDefault();
+		props.selectItem(props.item);
+		props.openModal();
+		//setTimeout(props.openModal, 200);
+	};
+
 	return (
-			<Container onClick={(e) => { e.preventDefault(); props.addItem(props.item)}}>
+			<Container onClick={onClick}>
 				<TextSection>
 					<Name>{props.item.labels.displayName}</Name>
 					<Description>{props.item.labels.description}</Description>
