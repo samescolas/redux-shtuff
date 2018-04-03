@@ -6,7 +6,7 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-	filterOpen: false,
+	filterOpen: true,
 	filter: null,
 	cartOpen: false,
 	menuItemModalOpen: false,

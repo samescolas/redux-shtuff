@@ -65,7 +65,7 @@ class Navbar extends Component {
 		const NavItem = styled.div`
 			height: 7vh;
 			width: 22%;
-			font-size: 2vmin;
+			font-size: 2.2vmin;
 			float: right;
 			transition: background-color 0.42s ease-out, color 0.7s ease-out;
 			background-color: ${active ? '#b20000' : '#f3f3f3'};
@@ -126,7 +126,7 @@ class Navbar extends Component {
 			width: 100%;
 			height: 7vh;
 			background-color: #f3f3f3;
-			font-family: 'Spectral SC', serif;
+			font-family: 'Oswald', sans-serif;
 			box-shadow: 2px 1px 2px #333;
 			position: fixed;
 			z-index: 17;

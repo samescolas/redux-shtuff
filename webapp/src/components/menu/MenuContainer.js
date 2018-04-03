@@ -36,6 +36,11 @@ class MenuContainer extends Component {
 		);
 	}
 
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.onModalKeyPress);
+		document.removeEventListener('click', this.onModalClick);
+	}
+
 /*
 	filterMenu = (filter) => {
 		if (filter === null) {
@@ -67,16 +72,39 @@ class MenuContainer extends Component {
 	openModal = () => {
 		let modal = document.getElementById("menu-item-modal");
 		this.props.toggleMenuItemModal();
+		
 
+		document.addEventListener('keydown', this.onModalKeyPress)
+		document.addEventListener('click', this.onModalClick);
 		if (modal) {
 			modal.style.display = "block";
+			console.log("GOT 'EM");
+		} else {
+			console.log("NO CAN DO");
+			console.log(modal);
 		}
 	};
 
 	closeModal = () => {
 		this.props.toggleMenuItemModal();
-		document.getElementById("menu-item-modal").style.display = "none";
+		let modal = document.getElementById("menu-item-modal");
+		
+		modal.style.display = "none";
+		document.removeEventListener('keydown', this.onModalKeyPress)
+		document.removeEventListener('click', this.onModalClick);
 	};
+
+	onModalKeyPress = (e) => {
+		if (e.key == 'Escape') {
+			this.closeModal();
+		}
+	}
+
+	onModalClick = (e) => {
+		if (e.target.id === 'modal-overlay') {
+			this.closeModal();
+		}
+	}
 
 	render() {
 		const { menu, appStatus, cart, selectMenuItem } = this.props;

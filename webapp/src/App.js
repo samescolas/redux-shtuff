@@ -15,7 +15,7 @@ import { auth } from './firebase';
 import UserContainer from './components/auth/UserContainer';
 
 import Navbar from './components/navbar/Navbar';
-import Cart from './components/navbar/Cart';
+import CartContainer from './components/cart/CartContainer';
 import MenuContainer from './components/menu/MenuContainer';
 import Signup from './components/auth/Signup';
 import Signin from './components/auth/Signin';
@@ -36,7 +36,7 @@ const App = () => {
 			<BrowserRouter>
 				<Provider store={store}>
 						<UserContainer>
-						<Cart user={{}} />
+						<CartContainer user={{}} />
 						<div id="main">
 							<Navbar user={{}} />
 							{ /* Add padding to account for fixed position navbar */}

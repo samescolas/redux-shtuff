@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { toggleCart } from '../../actions';
 import styled from 'styled-components';
 import ShoppingCart from 'react-icons/lib/fa/shopping-cart';
+import Cart from './Cart';
 
 
-class Cart extends Component {
+class CartContainer extends Component {
 
 	componentDidMount() {
 		document.addEventListener('keydown', this.onPressWhenClosed);
@@ -46,7 +47,7 @@ class Cart extends Component {
 		let menuContainer = document.getElementById("menu-container");
 
 		if (sideNav) {
-			sideNav.style.width = "300px";
+			sideNav.style.width = "400px";
 		}
 		if (menuContainer) {
 			if (parseFloat(catList.offsetWidth) <= 1) {
@@ -131,23 +132,29 @@ class Cart extends Component {
 	render() {
 		const Container = styled.div`
 			height: 93vh;
-			width: ${this.props.appStatus.cartOpen ? '300px' : '0'};
+			width: ${this.props.appStatus.cartOpen ? '400px' : '0'};
 			position: fixed;
 			z-index: 17;
 			top: 7vh;
 			right: 0;
-			background-color: #600a02;
+			background-color: #f6f6f6;
 			overflow-x: hidden;
 			padding-top: 7vh;
 			transition: 0.5s;
+			box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.90);
 		`;
 		const CloseButton = styled.a`
 			position: absolute;
 			top: 1vmin;
 			right: 2vmin;
-			font-size: 5vmin;
+			font-size: 3vmin;
 			text-decoration: none;
-			color: #818181;
+			color: #333;
+			text-shadow: 1px 1px black;
+			&:hover {
+				color: white;
+				text-decoration: underline;
+			}
 		`;
 		const CartButton = styled.span`
 			position: absolute;
@@ -169,15 +176,16 @@ class Cart extends Component {
 				<CartButton id="cart-btn" onClick={this.toggleCart}><ShoppingCart /></CartButton>
 				<Container id="cart-container">
 					<CloseButton href="" onClick={(e) => { e.preventDefault(); this.closeNav(); }}>&times;</CloseButton>
-					{ this.renderLinks() }
+					{/* this.renderLinks() */}
+					<Cart cart={this.props.cart} />
 				</Container>
 			</div>
 		);
 	}
 };
 
-const mapStateToProps = ({ appStatus }) => {
-	return { appStatus };
+const mapStateToProps = ({ appStatus, cart }) => {
+	return { appStatus, cart };
 };
 
-export default withRouter(connect(mapStateToProps, { toggleCart })(Cart));
+export default withRouter(connect(mapStateToProps, { toggleCart })(CartContainer));

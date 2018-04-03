@@ -3,53 +3,50 @@ import styled from 'styled-components';
 
 const MenuItem = (props) => {
 	const Container = styled.div`
-		width: 40%;
-		height: 17vh;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
+		width: 44%;
+		margin-left: 5%;
+		margin-bottom: 2%;
 		box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.42);
+		position: relative;
 		@media (max-width: 1200px) {
-			width: 80%;
+			width: 100%;
 			margin-left: 0;
 		};
-		margin-left: 5%;
-		margin-top: 2%;
 		&:nth-child(odd) {
 			margin-left: 0;
 		};
 		&:hover {
 			cursor: pointer;
 		}
-		position: relative;
-	`;
-	const TextSection = styled.div`
-		width: 65%;
-		margin-left: 5%;
-		height: 100%;
-		font-size: 1.9vmin;
 	`;
 	const Image = styled.img`
-		width: 30%;
-		height: 100%;
+		width: 45%;
+		max-height: 220px;
+		min-height: 120px;
+		float: right;
+	`;
+	const TextSection = styled.div`
+		padding: 0.5% 2%;
+		width: 51%;
+		float: left;
+		font-family: 'Ubuntu', 'Helvetica Neue', serif;
 	`;
 	const Name = styled.p`
 		font-weight: bold;
-		font-size: 2.1vmin;
-		padding-top: 3px;
+		font-size: 1.2em;
+		line-height: 1em;
 	`;
 	const Description = styled.p`
-		margin-right: 5%;
+		font-size: 1em;
 	`;
-	const Price = styled.p`
-		text-align: right;
-		padding-right: 5%;
+	const Cost = styled.div`
+		width: 100%;
 		position: absolute;
 		bottom: 0;
-		right: 31%;
+	`;
+	const Price = styled.p`
 	`
 	const Order = styled.p`
-		text-align: left;
 	`;
 
 	const onClick = (e) => {
@@ -64,8 +61,10 @@ const MenuItem = (props) => {
 				<TextSection>
 					<Name>{props.item.labels.displayName}</Name>
 					<Description>{props.item.labels.description}</Description>
-					<Price>{props.item.price.toString()}</Price>
-					<Order>{props.count}</Order>
+					<Cost>
+						<Price>{"$"+props.item.price.toString()}</Price>
+						<Order>{props.count > 0 ? `${props.count}x` : ''}</Order>
+					</Cost>
 				</TextSection>
 				<Image src={props.item.imageURL} />
 			</Container>

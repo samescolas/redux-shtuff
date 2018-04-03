@@ -40,6 +40,33 @@
 								"photoURL": ""
 							},
 							"price": "1.75"
+						},
+						{
+							"itemId": "tea",
+							"labels": {
+								"displayName": "Tea",
+								"description": "Oolong or black tea served in a teapot.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "coffee",
+							"labels": {
+								"displayName": "Coffee",
+								"description": "Coffee served with milk or cream and sugar.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "orange_juice",
+							"labels": {
+								"displayName": "Orange Juice",
+								"description": "Freshly sqeezed orange juice.",
+								"photoURL": ""
+							},
+							"price": "1.75"
 						}
 					]
 				},
@@ -76,6 +103,33 @@
 								"photoURL": ""
 							},
 							"price": "5.99"
+						},
+						{
+							"itemId": "tea",
+							"labels": {
+								"displayName": "Tea",
+								"description": "Oolong or black tea served in a teapot.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "coffee",
+							"labels": {
+								"displayName": "Coffee",
+								"description": "Coffee served with milk or cream and sugar.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "orange_juice",
+							"labels": {
+								"displayName": "Orange Juice",
+								"description": "Freshly sqeezed orange juice.",
+								"photoURL": ""
+							},
+							"price": "1.75"
 						}
 					]
 				}
@@ -130,6 +184,33 @@
 								"photoURL": ""
 							},
 							"price": "100.00"
+						},
+						{
+							"itemId": "tea",
+							"labels": {
+								"displayName": "Tea",
+								"description": "Oolong or black tea served in a teapot.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "coffee",
+							"labels": {
+								"displayName": "Coffee",
+								"description": "Coffee served with milk or cream and sugar.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "orange_juice",
+							"labels": {
+								"displayName": "Orange Juice",
+								"description": "Freshly sqeezed orange juice.",
+								"photoURL": ""
+							},
+							"price": "1.75"
 						}
 					]
 				},
@@ -166,6 +247,33 @@
 								"photoURL": ""
 							},
 							"price": "12.99"
+						},
+						{
+							"itemId": "tea",
+							"labels": {
+								"displayName": "Tea",
+								"description": "Oolong or black tea served in a teapot.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "coffee",
+							"labels": {
+								"displayName": "Coffee",
+								"description": "Coffee served with milk or cream and sugar.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "orange_juice",
+							"labels": {
+								"displayName": "Orange Juice",
+								"description": "Freshly sqeezed orange juice.",
+								"photoURL": ""
+							},
+							"price": "1.75"
 						}
 					]
 				}
@@ -220,6 +328,33 @@
 								"photoURL": ""
 							},
 							"price": "100.00"
+						},
+						{
+							"itemId": "tea",
+							"labels": {
+								"displayName": "Tea",
+								"description": "Oolong or black tea served in a teapot.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "coffee",
+							"labels": {
+								"displayName": "Coffee",
+								"description": "Coffee served with milk or cream and sugar.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "orange_juice",
+							"labels": {
+								"displayName": "Orange Juice",
+								"description": "Freshly sqeezed orange juice.",
+								"photoURL": ""
+							},
+							"price": "1.75"
 						}
 					]
 				},
@@ -256,6 +391,33 @@
 								"photoURL": ""
 							},
 							"price": "12.99"
+						},
+						{
+							"itemId": "tea",
+							"labels": {
+								"displayName": "Tea",
+								"description": "Oolong or black tea served in a teapot.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "coffee",
+							"labels": {
+								"displayName": "Coffee",
+								"description": "Coffee served with milk or cream and sugar.",
+								"photoURL": ""
+							},
+							"price": "2.00"
+						},
+						{
+							"itemId": "orange_juice",
+							"labels": {
+								"displayName": "Orange Juice",
+								"description": "Freshly sqeezed orange juice.",
+								"photoURL": ""
+							},
+							"price": "1.75"
 						}
 					]
 				}

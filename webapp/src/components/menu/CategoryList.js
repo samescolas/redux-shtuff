@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { toggleFilter } from '../../actions';
 import styled from 'styled-components';
 import FaFilter from 'react-icons/lib/fa/filter';
-import FaClose from 'react-icons/lib/fa/close';
 
 class CategoryList extends Component {
 
@@ -106,7 +105,7 @@ class CategoryList extends Component {
 		let cart = document.getElementById("cart-container");
 
 		if (list) {
-			list.style.width = "9%";
+			list.style.width = "15%";
 		}
 		if (parseFloat(cart.offsetWidth) > 0) {
 			let menuContainer = document.getElementById("menu-container");
@@ -146,7 +145,7 @@ class CategoryList extends Component {
 	render() {
 		const { menu, appStatus } = this.props;
 		const Container = styled.div`
-			width: ${appStatus.filterOpen ? '9%' : '0'};
+			width: ${appStatus.filterOpen ? '15%' : '0'};
 			height: 100vh;
 			float: left;
 			background-color: #600a02;
@@ -156,6 +155,7 @@ class CategoryList extends Component {
 			display: flex;
 			flex-direction: column;
 			color: #e2e2e2;
+			font-family: 'Droid serif', serif;
 		`;
 		const CategoryList = styled.ul`
 			padding: 0;
@@ -168,6 +168,8 @@ class CategoryList extends Component {
 			height: 10%;
 			padding-left: 1vw;
 			font-size: 4vmin;
+			font-family: 'Oswald', sans-serif;
+			margin-top: -6%;
 			float: left;
 		`;
 		const FilterContainer = styled.span`
@@ -176,7 +178,7 @@ class CategoryList extends Component {
 			font-size: 3vmin;
 			padding: 0.5%;
 			cursor: pointer;
-			color: rgba(96, 10, 2, 1);
+			color: ${appStatus.filterOpen ? 'rgba(0, 0, 0, 0)' : 'rgba(96, 10, 2, 1)'};
 			z-index: 200;
 		`;
 		const CloseContainer = styled.span`
@@ -192,9 +194,11 @@ class CategoryList extends Component {
 	
 		return (
 			<div>
-				<FilterContainer id="filter-container"><FaFilter onClick={(e) => { e.preventDefault(); this.openList(); }} /></FilterContainer>
+				<FilterContainer id="filter-container">
+					<FaFilter onClick={(e) => { e.preventDefault(); this.openList(); }} />
+				</FilterContainer>
 				<Container id="category-list">
-					<CloseContainer><FaClose onClick={this.closeList}/></CloseContainer>
+					<CloseContainer><span onClick={this.closeList}/>&times;</CloseContainer>
 					<Title>{menu.labels.displayName}</Title>
 					<CategoryList>
 						{/* Object.keys(menu.menuLists).map(i => <Category onClick={onCategoryClick} key={i}>{menu.menuLists[i].labels.displayName}</Category>) */}

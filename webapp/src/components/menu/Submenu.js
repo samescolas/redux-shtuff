@@ -5,7 +5,7 @@ import MenuItem from './MenuItem';
 const Submenu = ({ menu, cart, openModal, closeModal, selectItem }) => {
 	const SectionContainer = styled.div`
 		margin-top: 10px;
-		padding: 2vmin;
+		padding: 2vmin 0;
 	`
 	const TitleContainer = styled.div`
 		width: 100%;
@@ -20,11 +20,13 @@ const Submenu = ({ menu, cart, openModal, closeModal, selectItem }) => {
 	`;
 	const MenuItemContainer = styled.div`
 		width: 80%;
-		margin-left: 5%;
-		padding-left: 10%;
-		padding-bottom: 2%;
 		display: flex;
 		flex-wrap: wrap;
+		margin-left: 10%;
+		@media (max-width: 1200px) {
+			margin-left: 0;
+			width: 90%;
+		};
 	`;
 	const count = (item) => {
 		return cart.items.filter(i => i === item).length;
