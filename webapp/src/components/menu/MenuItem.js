@@ -62,8 +62,7 @@ const MenuItem = (props) => {
 					<Name>{props.item.labels.displayName}</Name>
 					<Description>{props.item.labels.description}</Description>
 					<Cost>
-						<Price>{"$"+props.item.price.toString()}</Price>
-						<Order>{props.count > 0 ? `${props.count}x` : ''}</Order>
+						<Price>{`${props.count > 0 ? `${props.count} x ` : ''}$${props.item.price.toString()}`}</Price>
 					</Cost>
 				</TextSection>
 				<Image src={props.item.imageURL} />
