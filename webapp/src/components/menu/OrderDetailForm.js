@@ -40,12 +40,6 @@ class OrderDetailForm extends Component {
 			padding-left: 1vmin;
 			padding-right: 1vmin;
 		`;
-		const Total = styled.p`
-			font-size: 1.8vmin;
-			position: fixed;
-			bottom: 1vh;
-			left: 28vw;
-		`;
 		const SubmitButton = styled.button`
 			height: 40%;
 			width: 80%;
@@ -57,7 +51,7 @@ class OrderDetailForm extends Component {
 			//props.addItem(props.item); 
 		}
 		const onMinusClick = (e) => {
-			if (this.props.itemCount + this.state.delta === 0) {
+			if (this.state.delta === 0) {
 				return ;
 			}
 			this.setState({ delta: this.state.delta - 1 });
@@ -86,9 +80,8 @@ class OrderDetailForm extends Component {
 				<Question>How many would you like to add to your order?</Question>
 				<FormContainer>
 					<QuantityButton onClick={onMinusClick}>-</QuantityButton>
-					<Quantity>{this.props.itemCount + this.state.delta}</Quantity>
+					<Quantity>{this.state.delta}</Quantity>
 					<QuantityButton onClick={onPlusClick}>+</QuantityButton>
-					<Total>Total {formatCurrency((this.props.itemCount + this.state.delta) * this.props.item.price)}</Total>
 				</FormContainer>
 				<SubmitButton onClick={onSubmit}>Add to Order</SubmitButton>
 			</QuestionContainer>

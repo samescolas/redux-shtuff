@@ -27,7 +27,7 @@ const MenuItemModal = ({ isOpen, close, item, cart, addItem, removeItem }) => {
 		left: 0;
 		display: flex;
 		flex-direction: row;
-		font-family: 'Droid serif';
+		font-family: 'Ubuntu', 'Helvetica Neue', serif;
 	`
 	const Right = styled.div`
 		width: 33%
@@ -50,12 +50,16 @@ const MenuItemModal = ({ isOpen, close, item, cart, addItem, removeItem }) => {
 		padding-top: 1vh;
 	`;
 	const Image = styled.img`
-		height: 100%;
+		min-height: 15vw;
+		max-height: 18vw;
+		vertical-align: center;
+		margin: auto;
 		width: auto;
 	`;
 	const Title = styled.h2`
 		font-family: 'Oswald', sans-serif;
 		font-size: 4vmin;
+		line-height: 1.2vmin;
 	`;
 	const CloseButton = styled.a`
 		position: absolute;
@@ -81,13 +85,13 @@ const MenuItemModal = ({ isOpen, close, item, cart, addItem, removeItem }) => {
 					<p>{item.labels.description}</p>
 				</Left>
 				<Center>
-						<OrderDetailForm
-							item={item}
-							itemCount={itemCount}
-							addItem={addItem}
-							removeItem={removeItem}
-							closeDiv={close}
-						/>
+					<OrderDetailForm
+						item={item}
+						itemCount={itemCount}
+						addItem={addItem}
+						removeItem={removeItem}
+						closeDiv={close}
+					/>
 				</Center>
 				<Right>
 					{/* 

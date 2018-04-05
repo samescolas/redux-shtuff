@@ -97,6 +97,8 @@ class MenuContainer extends Component {
 	onModalKeyPress = (e) => {
 		if (e.key == 'Escape') {
 			this.closeModal();
+		} else if (e.key == 'Enter') {
+			console.log("PRESSED ENTER");
 		}
 	}
 
