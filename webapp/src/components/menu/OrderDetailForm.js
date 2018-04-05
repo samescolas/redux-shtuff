@@ -9,6 +9,51 @@ class OrderDetailForm extends Component {
 		};
 	}
 
+	componentWillMount() {
+		document.addEventListener('keydown', this.onKeyPress);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.onKeyPress);
+	}
+
+	onKeyPress = (e) => {
+		if (e.key === 'Enter') {
+			this.onSubmit(e);
+		} else if (e.key === '=') {
+			this.onPlusClick();
+		} else if (e.key === '-') {
+			this.onMinusClick();
+		}
+	}
+
+	onPlusClick = (e) => {
+		this.setState({ delta: this.state.delta + 1 });
+		//props.addItem(props.item); 
+	}
+	onMinusClick = (e) => {
+		if (this.state.delta === 0) {
+			return ;
+		}
+		this.setState({ delta: this.state.delta - 1 });
+		//if (props.itemCount == 0)
+			//return ;
+		//props.removeItem(props.item);
+	}
+	onSubmit = (e) => {
+		e.preventDefault();
+		if (this.state.delta > 0) {
+			for (let i=0; i<this.state.delta; i++) {
+				this.props.addItem(this.props.item);
+			}
+		} else if (this.state.delta < 0) {
+			for (let i=0; i>this.state.delta; i--) {
+				this.props.removeItem(this.props.item);
+			}
+		}
+		this.props.closeDiv();
+	};
+
 	render() {
 		const QuestionContainer = styled.div`
 			display: flex;
@@ -46,32 +91,6 @@ class OrderDetailForm extends Component {
 			margin-top: 5%;
 			margin-left: 10%;
 		`;
-		const onPlusClick = (e) => {
-			this.setState({ delta: this.state.delta + 1 });
-			//props.addItem(props.item); 
-		}
-		const onMinusClick = (e) => {
-			if (this.state.delta === 0) {
-				return ;
-			}
-			this.setState({ delta: this.state.delta - 1 });
-			//if (props.itemCount == 0)
-				//return ;
-			//props.removeItem(props.item);
-		}
-		const onSubmit = (e) => {
-			e.preventDefault();
-			if (this.state.delta > 0) {
-				for (let i=0; i<this.state.delta; i++) {
-					this.props.addItem(this.props.item);
-				}
-			} else if (this.state.delta < 0) {
-				for (let i=0; i>this.state.delta; i--) {
-					this.props.removeItem(this.props.item);
-				}
-			}
-			this.props.closeDiv();
-		};
 		const formatCurrency = (c) => {
 			return "$" + c.toFixed(2).toString();
 		};
@@ -79,11 +98,11 @@ class OrderDetailForm extends Component {
 			<QuestionContainer>
 				<Question>How many would you like to add to your order?</Question>
 				<FormContainer>
-					<QuantityButton onClick={onMinusClick}>-</QuantityButton>
+					<QuantityButton onClick={this.onMinusClick}>-</QuantityButton>
 					<Quantity>{this.state.delta}</Quantity>
-					<QuantityButton onClick={onPlusClick}>+</QuantityButton>
+					<QuantityButton onClick={this.onPlusClick}>+</QuantityButton>
 				</FormContainer>
-				<SubmitButton onClick={onSubmit}>Add to Order</SubmitButton>
+				<SubmitButton onClick={this.onSubmit}>Add to Order</SubmitButton>
 			</QuestionContainer>
 		)
 	};

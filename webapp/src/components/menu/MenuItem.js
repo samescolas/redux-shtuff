@@ -53,7 +53,6 @@ const MenuItem = (props) => {
 		e.preventDefault();
 		props.selectItem(props.item);
 		props.openModal();
-		//setTimeout(props.openModal, 200);
 	};
 
 	return (

@@ -13,13 +13,15 @@ import { authorize_user } from '../../actions';
 class UserContainer extends Component {
 
 	componentDidMount() {
+		// Check page so we don't redirect
+		// from menu page or home page
+		const page = window.location.pathname.slice(1);
+
   	auth.onAuthStateChanged((user) => {
 			if (user !== null) {
 				this.props.authorize_user(user);
-				console.log("How many times are we doing this? Not a lot, right?");
-			} else {
+			} else if (page !== 'menu' && page !== '') {
 				this.props.history.push('signin');
-				console.log("You've been signout out courtesy of the user container.");
 			}
 		});
 	}

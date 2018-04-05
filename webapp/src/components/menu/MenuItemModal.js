@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import OrderDetailForm from './OrderDetailForm';
+import { colors } from '../../config';
 
 const MenuItemModal = ({ isOpen, close, item, cart, addItem, removeItem }) => {
 	if (!item)
@@ -9,7 +10,7 @@ const MenuItemModal = ({ isOpen, close, item, cart, addItem, removeItem }) => {
 		position: fixed;
 		width: 100%;
 		height: 100%;
-		background-color: ${isOpen ? 'rgba(0, 0, 0, 0.5)' : ''};
+		background-color: ${isOpen ? colors.overlay : ''};
 		display: ${isOpen ? 'block' : 'none'};
 		bottom: 0;
 		left: 0;
@@ -21,7 +22,7 @@ const MenuItemModal = ({ isOpen, close, item, cart, addItem, removeItem }) => {
 	const Content = styled.div`
 		width: 100%;
 		height: 33vh;
-		background-color: #fefefe;
+		background-color: ${colors.modalBg};
 		position: fixed;
 		bottom: 0;
 		left: 0;

@@ -35,25 +35,23 @@ const App = () => {
 	return (
 			<BrowserRouter>
 				<Provider store={store}>
-						<UserContainer>
-						<CartContainer user={{}} />
 						<div id="main">
 							<Navbar user={{}} />
 							{ /* Add padding to account for fixed position navbar */}
-							<div style={{ paddingTop: '13vh' }}>
-								<Switch>
-									<Route path='/profile' component={Profile} />
-								</Switch>
-								<Switch>
-									<Route path='/home' component={Home} />
-									<Route path='/menu' component={MenuContainer} />
-									<Route path='/signin' component={FirebaseAuth} />
-									<Route path='/signup' component={FirebaseAuth} />
-									<Route path='/signout' component={Signout} />
-								</Switch>
-							</div>
+							<UserContainer>
+								<CartContainer user={{}} />
+								<div style={{ paddingTop: '13vh' }}>
+									<Switch>
+										<Route path='/profile' component={Profile} />
+										<Route path='/home' component={Home} />
+										<Route path='/menu' component={MenuContainer} />
+										<Route path='/signin' component={FirebaseAuth} />
+										<Route path='/signup' component={FirebaseAuth} />
+										<Route path='/signout' component={Signout} />
+									</Switch>
+								</div>
+							</UserContainer>
 						</div>
-						</UserContainer>
 				</Provider>
 			</BrowserRouter>
 	);

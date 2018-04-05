@@ -5,6 +5,7 @@ import { toggleCart } from '../../actions';
 import styled from 'styled-components';
 import ShoppingCart from 'react-icons/lib/fa/shopping-cart';
 import Cart from './Cart';
+import { colors, screens } from '../../config';
 
 
 class CartContainer extends Component {
@@ -14,7 +15,7 @@ class CartContainer extends Component {
 	}
 
 	componentWillUnmount() {
-		document.getElementById("main").removeEventListener('click', this.onLoseFocus);
+		//document.getElementById("main").removeEventListener('click', this.onLoseFocus);
 		document.removeEventListener('keydown', this.onPressEscape);
 	}
 
@@ -34,8 +35,8 @@ class CartContainer extends Component {
 			//menuContainer.style.marginRight = "0";
 		}
 		document.getElementById("cart-container").style.width = "0";
-		document.getElementById("cart-btn").style.color = "#600a02";
-		document.getElementById("main").removeEventListener('click', this.onLoseFocus);
+		document.getElementById("cart-btn").style.color = colors.cartBtn;
+		//document.getElementById("main").removeEventListener('click', this.onLoseFocus);
 		document.removeEventListener('keydown', this.onPressWhenOpen);
 		document.addEventListener('keydown', this.onPressWhenClosed);
 		this.props.toggleCart();
@@ -56,8 +57,8 @@ class CartContainer extends Component {
 			//menuContainer.style.marginRight = "10%";
 		}
 
-		document.getElementById("main").addEventListener('click', this.onLoseFocus);
-		document.getElementById("cart-btn").style.color = "#f3f3f3";
+		//document.getElementById("main").addEventListener('click', this.onLoseFocus);
+		document.getElementById("cart-btn").style.color = colors.navBg;
 		document.removeEventListener('keydown', this.onPressWhenClosed);
 		document.addEventListener('keydown', this.onPressWhenOpen);
 		this.props.toggleCart();
@@ -73,9 +74,11 @@ class CartContainer extends Component {
 		this.props.history.push(e.target.id.replace('Link', ''));
 	}
 
+	/*
 	onLoseFocus = (e) => {
 		this.closeNav();
 	}
+	*/
 
 	onPressWhenOpen = ({ key }) => {
 		if (key === 'Escape' || key === 'c') {
@@ -84,7 +87,7 @@ class CartContainer extends Component {
 	}
 
 	onPressWhenClosed = ({ key }) => {
-		if (key === 'c') {
+		if (window.innerWidth > screens.tablet && key === 'c') {
 			this.openNav();
 		}
 	}
@@ -99,36 +102,6 @@ class CartContainer extends Component {
 		}
 	}
 
-	renderLink = (label, to) => {
-		const	Link = styled.a`
-			padding: 8px 8px 8px 32px;
-			text-decoration: none;
-			font-size: 25px;
-			color: #818181;
-			display: block;
-			transition: 0.5s;
-			&:hover {
-				color: #f1f1f1;
-			}
-		`;
-
-		return <Link key={to} id={`${to}Link`} href="" onClick={this.onClick}>{label}</Link>;
-	}
-
-	renderLinks = () => {
-		const { user } = this.props;
-
-		let userLinks;
-		if (user != null) {
-			userLinks = ['Profile', 'Sign Out'];
-		} else {
-			userLinks = ['Sign Up', 'Sign in'];
-		}
-		return ['Home', 'Menu', ...userLinks].map(l => {
-			return this.renderLink(l, l.toLowerCase().replace(' ', ''));
-		});
-	}
-
 	render() {
 		const Container = styled.div`
 			height: 93vh;
@@ -137,7 +110,7 @@ class CartContainer extends Component {
 			z-index: 17;
 			top: 7vh;
 			right: 0;
-			background-color: #f6f6f6;
+			background-color: ${colors.cartBg};
 			overflow-x: hidden;
 			padding-top: 7vh;
 			transition: 0.5s;
@@ -149,24 +122,26 @@ class CartContainer extends Component {
 			right: 2vmin;
 			font-size: 3vmin;
 			text-decoration: none;
-			color: #333;
+			color: ${colors.cartFg};
 			text-shadow: 1px 1px black;
 			&:hover {
-				color: white;
 				text-decoration: underline;
 			}
 		`;
 		const CartButton = styled.span`
 			position: absolute;
-			font-size: 4vmin;
-			top: 1.2vh;
+			font-size: 3.2vmin;
+			top: 1.6vh;
 			right: 3vw;
 			&:hover {
 				cursor: pointer;
 			}
 			z-index: 42;
-			color: ${this.props.appStatus.cartOpen ? '#f3f3f3' : '#600a02'};
+			color: ${this.props.appStatus.cartOpen ? colors.navBg : colors.cartBtn};
 			transition: color .5s;
+			@media (max-width: ${screens.tablet}px) {
+				display: none;
+			}
 		`;
 
 		if (this.props.user === null)
@@ -176,8 +151,7 @@ class CartContainer extends Component {
 				<CartButton id="cart-btn" onClick={this.toggleCart}><ShoppingCart /></CartButton>
 				<Container id="cart-container">
 					<CloseButton href="" onClick={(e) => { e.preventDefault(); this.closeNav(); }}>&times;</CloseButton>
-					{/* this.renderLinks() */}
-					<Cart cart={this.props.cart} />
+					<Cart cart={this.props.cart} toggleCart={this.toggleCart} />
 				</Container>
 			</div>
 		);

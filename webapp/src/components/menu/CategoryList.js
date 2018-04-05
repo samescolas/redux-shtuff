@@ -2,70 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toggleFilter } from '../../actions';
 import styled from 'styled-components';
-import FaFilter from 'react-icons/lib/fa/filter';
+import { colors } from '../../config';
+
+//import FaFilter from 'react-icons/lib/fa/filter';
 
 class CategoryList extends Component {
 
-	componentDidMount(e) {
-		document.addEventListener('keydown', this.onKeypressWhenClosed);
-	}
 
 	shouldComponentUpdate(nextProps, nextState) {
 		return (
 			this.props.appStatus.filterOpen === nextProps.appStatus.filterOpen &&
 			this.props.appStatus.cartOpen === nextProps.appStatus.cartOpen
 		);
-	}
-
-	componentWillUnmount() {
-		document.removeEventListener('keydown', this.onKeypressWhenOpen);
-		document.removeEventListener('keydown', this.onKeypressWhenClosed);
-	}
-
-	onKeypressWhenOpen = (e) => {
-		const { filterMenu, menu, filter } = this.props;
-
-		if (e.key === 'f') {
-			this.closeList();
-		} else if (e.key === 'ArrowDown') {
-			let toFind = filter || 'All';
-			let cats = ['All', ...Object.keys(menu.menuLists)];
-			let ix = cats.indexOf(toFind);
-
-			if (ix === cats.length - 1) {
-				filterMenu(null);
-				e.preventDefault();
-				this.openList();
-			} else if (ix >= 0) {
-				filterMenu(cats[ix + 1])
-				e.preventDefault();
-				this.openList();
-			}
-		} else if (e.key === 'ArrowUp') {
-			let toFind = filter || 'All';
-			let cats = ['All', ...Object.keys(menu.menuLists)];
-			let ix = cats.indexOf(toFind);
-
-			if (ix === 0) {
-				filterMenu(cats[cats.length - 1]);
-				this.openList();
-				e.preventDefault();
-			} else if (ix === 1) {
-				filterMenu(null);
-				this.openList();
-				e.preventDefault();
-			} else if (ix >= 0) {
-				filterMenu(cats[ix - 1])
-				this.openList();
-				e.preventDefault();
-			}
-		}
-	}
-
-	onKeypressWhenClosed = (e) => {
-		if (e.key === 'f') {
-			this.openList();
-		}
 	}
 
 	onCategoryClick = (e) => {
@@ -80,45 +28,6 @@ class CategoryList extends Component {
 		}
 	};
 
-	closeList = () => {
-		let list = document.getElementById("category-list");
-		let filter = document.getElementById("filter-container");
-		let cart = document.getElementById("cart-container");
-
-		if (list) {
-			list.style.width = "0";
-		}
-		if (parseFloat(cart.offsetWidth) > 0) {
-			document.getElementById("menu-container").style.width = "100%";
-		}
-		if (filter) {
-			filter.style.color = "rgba(96, 10, 2, 1)";
-		}
-		document.removeEventListener('keydown', this.onKeypressWhenOpen);
-		document.addEventListener('keydown', this.onKeypressWhenClosed);
-		this.props.toggleFilter();
-	};
-
-	openList = () => {
-		let list = document.getElementById("category-list");
-		let filter = document.getElementById("filter-container");
-		let cart = document.getElementById("cart-container");
-
-		if (list) {
-			list.style.width = "15%";
-		}
-		if (parseFloat(cart.offsetWidth) > 0) {
-			let menuContainer = document.getElementById("menu-container");
-				menuContainer.style.width = "80%";
-		}
-		if (filter) {
-			filter.style.color = "rgba(96, 10, 2, 0)";
-		}
-		document.removeEventListener('keydown', this.onKeypressWhenClosed);
-		document.addEventListener('keydown', this.onKeypressWhenOpen);
-		this.props.toggleFilter();
-	}
-
 	renderList = () => {
 		const { menu, filter } = this.props;
 		return ['All', ...Object.keys(menu.menuLists)].map(i => {
@@ -127,11 +36,16 @@ class CategoryList extends Component {
 				cursor: pointer;
 				width: 100%;
 				height: 5vh;
-				padding-top: 2vh;
+				padding-top: 1.8vh;
 				list-style-type: none;
 				padding-left: 1.5vw;
-				background-color: ${active ? '#b20000' : null};
-				font-weight: ${active ? 'bold' : null};
+				background-color: ${active ? colors.catsBgActive : colors.catsBg};
+				text-shadow: ${active ? '0 0 1px white' : ''};
+				transition: .5s;
+				&:hover {
+					background-color: ${colors.catsBgActive};
+					text-shadow: 0 0 1px;
+				};
 			`;
 
 			return (
@@ -148,14 +62,15 @@ class CategoryList extends Component {
 			width: ${appStatus.filterOpen ? '15%' : '0'};
 			height: 100vh;
 			float: left;
-			background-color: #600a02;
+			background-color: ${colors.catsBg};
 			overflow: hidden;
 			top: 7vh;
 			position: fixed;
 			display: flex;
 			flex-direction: column;
-			color: #e2e2e2;
+			color: ${colors.catsFg};
 			font-family: 'Droid serif', serif;
+			box-shadow: 1px 1px 2px black;
 		`;
 		const CategoryList = styled.ul`
 			padding: 0;
@@ -169,24 +84,6 @@ class CategoryList extends Component {
 			padding-left: 1vw;
 			font-size: 4vmin;
 			font-family: 'Oswald', sans-serif;
-			margin-top: -6%;
-			float: left;
-		`;
-		const FilterContainer = styled.span`
-			position: fixed;
-			top: 8vh;
-			font-size: 3vmin;
-			padding: 0.5%;
-			cursor: pointer;
-			color: ${appStatus.filterOpen ? 'rgba(0, 0, 0, 0)' : 'rgba(96, 10, 2, 1)'};
-			z-index: 200;
-		`;
-		const CloseContainer = styled.span`
-			font-size: 3vmin;
-			cursor: pointer;
-			display: block;
-			text-align: right;
-			padding-right: 1%;
 		`;
 
 		if (!menu)
@@ -194,14 +91,9 @@ class CategoryList extends Component {
 	
 		return (
 			<div>
-				<FilterContainer id="filter-container">
-					<FaFilter onClick={(e) => { e.preventDefault(); this.openList(); }} />
-				</FilterContainer>
 				<Container id="category-list">
-					<CloseContainer><span onClick={this.closeList}/>&times;</CloseContainer>
 					<Title>{menu.labels.displayName}</Title>
 					<CategoryList>
-						{/* Object.keys(menu.menuLists).map(i => <Category onClick={onCategoryClick} key={i}>{menu.menuLists[i].labels.displayName}</Category>) */}
 						{ this.renderList() }
 					</CategoryList>
 				</Container>

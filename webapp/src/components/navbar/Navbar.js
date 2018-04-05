@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import logo from '../../logo.png';
+import { colors, screens } from '../../config';
 
 class Navbar extends Component {
 
@@ -68,18 +69,21 @@ class Navbar extends Component {
 			font-size: 2.2vmin;
 			float: right;
 			transition: background-color 0.42s ease-out, color 0.7s ease-out;
-			background-color: ${active ? '#b20000' : '#f3f3f3'};
-			color: ${active ? '#d2d2d2' : '#900000'};
+			background-color: ${active ? colors.navBgActive : colors.navBg};
+			color: ${active ? colors.navFgActive : colors.navFg};
 			text-shadow: ${active ? '1px 1px 2px' : ''};
 			&:hover {
-				background-color: #b20000;
-				color: #d2d2d2;
+				background-color: ${colors.navBgActive};
+				color: ${colors.navFgActive};
 				text-shadow: 1px 1px 2px;
 			}
 		`;
 		const NavLink = styled.a`
-			color: gainsboro;
+			color: ${colors.navBg};
 			text-decoration: none;
+			@media (max-width: ${screens.tablet}px) {
+				display: none;
+			}
 		`;
 		const LinkText = styled.p`
 			text-align: center;
@@ -101,8 +105,24 @@ class Navbar extends Component {
 			width: 50%;
 			margin-right: 8vw;
 			float: right;
-			background-color: #f3f3f3;
+			background-color: ${colors.navBg};
 		`;
+		const HamburgerMenu = styled.div`
+				display: block;
+				position: fixed;
+				top: 2.3vh;
+				right: 3vw;
+				@media (min-width: ${screens.tablet}px) {
+					display: none;
+				}
+		`
+		const HamburgerBar = styled.div`
+			width: 3vw;
+			height: 3px;
+			background-color: #333;
+			margin-top: 3px;
+		`;
+
 		let userLink;	
 		if (isLoggedIn) {
 			userLink = 'Profile';
@@ -111,9 +131,13 @@ class Navbar extends Component {
 		} else {
 			userLink = 'Sign Up';
 		}
-
 		return (
 		  <NavListContainer>
+				<HamburgerMenu>
+					<HamburgerBar />
+					<HamburgerBar />
+					<HamburgerBar />
+				</HamburgerMenu>
 				{!isLoggedIn  ? this.renderLink(userLink.toLowerCase().replace(' ', ''), userLink, 2) : null}
 				{!isLoggedIn ? null : this.renderLink(userLink.toLowerCase().replace(' ', ''), userLink, 2)}
 		  	{this.renderLink('menu', 'Menu', 1)}
@@ -125,7 +149,7 @@ class Navbar extends Component {
 		const NavContainer = styled.div`
 			width: 100%;
 			height: 7vh;
-			background-color: #f3f3f3;
+			background-color: ${colors.navBg};
 			font-family: 'Oswald', sans-serif;
 			box-shadow: 2px 1px 2px #333;
 			position: fixed;
