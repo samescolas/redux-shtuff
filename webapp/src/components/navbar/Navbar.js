@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import logo from '../../logo.png';
+import logo from '../../logo-only.png';
 import { colors, screens } from '../../config';
 
 class Navbar extends Component {
@@ -159,11 +159,13 @@ class Navbar extends Component {
 			height: 7vh;
 			width: 40%;
 			float: left;
-			padding-left: 5px;
+			padding: 8px;
+			padding-left: 12px;
 		`;
 		const Logo = styled.img`
-			height: 100%;
+			height: 90%;
 			width: auto;
+			margin: auto;
 		`;
 		const NavLink = styled.a`
 			text-decoration: none;
