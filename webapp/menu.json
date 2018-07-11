@@ -138,10 +138,334 @@
 		"lunch": {
 			"labels": {
 				"displayName": "Lunch",
-				"description": "The second meal of the day!",
+				"description": "Subtitle",
 				"photoURL": "https://images.pexels.com/photos/5317/food-salad-restaurant-person.jpg?w=1260&h=750&auto=compress&cs=tinysrgb"
 			},
 			"menuLists": {
+				"manakish": {
+					"labels": {
+						"displayName": "Manakish",
+						"description": "Traditional Syrian flat bread",
+						"photoURL": ""
+					},
+					"items": [
+						{
+							"itemId": "cheese_manakish",
+							"labels": {
+								"displayName": "Cheese Manakish",
+								"description": "cheese manakish (description)",
+								"photoURL": ""
+							},
+							"price": "10.00"
+						},
+						{
+							"itemId": "zaatar",
+							"labels": {
+								"displayName": "Za'atar",
+								"description": "za'atar (description)",
+								"photoURL": ""
+							},
+							"price": "10.00"
+						},
+						{
+							"itemId": "lahm_biajin",
+							"labels": {
+								"displayName": "Lahm Biajin",
+								"description": "lahm biajin (description)",
+								"photoURL": ""
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "spinach_manakish",
+							"labels": {
+								"displayName": "Spinach Manakish",
+								"description": "spinach manakish (description)",
+								"photoURL": "spinach_manakish.jpeg"
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "pepperoni_beef_manakish",
+							"labels": {
+								"displayName": "Pepperoni Beef Manakish",
+								"description": "pepperoni beef (description)",
+								"photoURL": "pepperoni_beef_manakish.jpeg"
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "nutella_manakish",
+							"labels": {
+								"displayName": "Nutella Manakish",
+								"description": "nutella manakish (description)",
+								"photoURL": ""
+							},
+							"price": "10.00"
+						}
+					]
+				},
+				"specialty_plates": {
+					"labels": {
+						"displayName": "Specialty Plates",
+						"description": "All plates include garlic sauce, hummus, french fries, or rice, and a salad.",
+						"photoURL": ""
+					},
+					"items": [
+						{
+							"itemId": "chix_shawarma_plate",
+							"labels": {
+								"displayName": "Chicken Shawarma",
+								"description": "chix shawarma (description)",
+								"photoURL": "chix_shawarma_combo.jpeg"
+							},
+							"price": "12.00"
+						},
+						{
+							"itemId": "lamb_shawarma_plate",
+							"labels": {
+								"displayName": "Lamb Shawarma",
+								"description": "lamb shawarma (description)",
+								"photoURL": ""
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "beef_shawarma_plate",
+							"labels": {
+								"displayName": "Beef Shawarma",
+								"description": "beef shawarma (description)",
+								"photoURL": ""
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "chix_kabab_plate",
+							"labels": {
+								"displayName": "Chicken Kabab",
+								"description": "chix kabab (description)",
+								"photoURL": ""
+							},
+							"price": "12.00"
+						},
+						{
+							"itemId": "beef_kabab_plate",
+							"labels": {
+								"displayName": "Beef Kabab",
+								"description": "beef kabab (description)",
+								"photoURL": ""
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "mex_grill_kabab",
+							"labels": {
+								"displayName": "Mex Grill Kabab",
+								"description": "mex grill (description)",
+								"photoURL": "mex_grill_kabab.jpeg"
+							},
+							"price": "17.99"
+						},
+						{
+							"itemId": "tarboosh_burger",
+							"labels": {
+								"displayName": "Tarboosh Burger",
+								"description": "Black angus burger served with cocktail sauce.",
+								"photoURL": ""
+							},
+							"price": "10.00"
+						},
+						{
+							"itemId": "veggie_combo",
+							"labels": {
+								"displayName": "Veggie Combo",
+								"description": "veggie combo (description)",
+								"photoURL": ""
+							},
+							"price": "10.99"
+						},
+						{
+							"itemId": "falafel",
+							"labels": {
+								"displayName": "Falafel",
+								"description": "The world's best Falafel.",
+								"photoURL": "falafel_combo.jpeg"
+							},
+							"price": "12.00"
+						},
+						{
+							"itemId": "lamb_shank",
+							"labels": {
+								"displayName": "Lamb Shank",
+								"description": "lamb shank (description)",
+								"photoURL": ""
+							},
+							"price": "19.99"
+						}
+					]
+				},
+				"roll_ups": {
+					"labels": {
+						"displayName": "Roll Ups",
+						"description": "Regular / Spicy",
+						"photoURL": ""
+					},
+					"items": [
+						{
+							"itemId": "chix_shawarma_rollup",
+							"labels": {
+								"displayName": "Chicken Shawarma",
+								"description": "chix shawarma (description)",
+								"photoURL": ""
+							},
+							"price": "7.50"
+						},
+						{
+							"itemId": "lamb_shawarma_rollup",
+							"labels": {
+								"displayName": "Lamb Shawarma",
+								"description": "lamb shawarma (description)",
+								"photoURL": ""
+							},
+							"price": "8.99"
+						},
+						{
+							"itemId": "beef_shawarma_rollup",
+							"labels": {
+								"displayName": "Beef Shawarma",
+								"description": "beef shawarma (description)",
+								"photoURL": ""
+							},
+							"price": "8.99"
+						},
+						{
+							"itemId": "chicken_kabab_rollup",
+							"labels": {
+								"displayName": "Chicken Kabab",
+								"description": "chix kabab rollup (description)",
+								"photoURL": ""
+							},
+							"price": "8.50"
+						},
+						{
+							"itemId": "beef_kabab_rollup",
+							"labels": {
+								"displayName": "Beef Kabab Rollup",
+								"description": "beef kabab rollup (description)",
+								"photoURL": ""
+							},
+							"price": "8.50"
+						},
+						{
+							"itemId": "falafel_rollup",
+							"labels": {
+								"displayName": "Falafel",
+								"description": "falafel rollup (description)",
+								"photoURL": ""
+							},
+							"price": "7.00"
+						}
+					]
+				},
+				"apps_n_salads": {
+					"labels": {
+						"displayName": "Appetizers / Salads",
+						"description": "apps & salads (description)",
+						"photoURL": ""
+					},
+					"items": [
+						{
+							"itemId": "fattush_salad",
+							"labels": {
+								"displayName": "Fattush",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "8.00"
+						},
+						{
+							"itemId": "greek_salad",
+							"labels": {
+								"displayName": "Greek Salad",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "8.00"
+						},
+						{
+							"itemId": "syrian_salad",
+							"labels": {
+								"displayName": "Syrian Salad",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "8.00"
+						},
+						{
+							"itemId": "tabule_salad",
+							"labels": {
+								"displayName": "Tabule Salad",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "7.00"
+						},
+						{
+							"itemId": "hummus_salad",
+							"labels": {
+								"displayName": "Hummus",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "6.00"
+						},
+						{
+							"itemId": "babaganush",
+							"labels": {
+								"displayName": "Babaganush",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "7.00"
+						},
+						{
+							"itemId": "french_fries",
+							"labels": {
+								"displayName": "French Fries",
+								"description": "french fries (description)",
+								"photoURL": ""
+							},
+							"price": "5.00"
+						},
+						{
+							"itemId": "chicken_wings",
+							"labels": {
+								"displayName": "Chicken Wings",
+								"description": "chix wings (description)",
+								"photoURL": ""
+							},
+							"price": "10.00"
+						},
+						{
+							"itemId": "mozz_sticks",
+							"labels": {
+								"displayName": "Mozzerella Sticks",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "6.99"
+						},
+						{
+							"itemId": "falafel_balls",
+							"labels": {
+								"displayName": "Falafel Balls",
+								"description": "falafel balls (description)",
+								"photoURL": ""
+							},
+							"price": "5.99"
+						}
+					]
+				},
 				"beverages": {
 					"labels": {
 						"displayName": "Beverages",
@@ -214,64 +538,166 @@
 						}
 					]
 				},
-				"meals": {
+				"pizza": {
 					"labels": {
-						"displayName": "Meals",
-						"description": "What would you like to eat, sir?",
+						"displayName": "Pizza (title)",
+						"description": "Pizza pizza pizza (subtitle)",
 						"photoURL": ""
 					},
 					"items": [
 						{
-							"itemId": "steak",
+							"itemId": "cheese_pizza",
 							"labels": {
-								"displayName": "Steak",
-								"description": "Fried steak served with garlic mashed potatoes and spinach.",
+								"displayName": "Cheese Pizza",
+								"description": "Cheese pizza (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 9.99,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 12.99,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 14.99,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "22.99"
 						},
 						{
-							"itemId": "pasta",
+							"itemId": "pepperoni_pizza",
 							"labels": {
-								"displayName": "Pasta",
-								"description": "A hot mess of pasta served with butter and garlic.",
+								"displayName": "Pepperoni Pizza",
+								"description": "Pepperoni pizza (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 12.00,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 14.00,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 19.00,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "14.00"
 						},
 						{
-							"itemId": "tacos",
+							"itemId": "buffalo_chix_pizza",
 							"labels": {
-								"displayName": "Tacos",
-								"description": "A beautiful array of waffle shelled tacos with your choice of toppings.",
+								"displayName": "Buffalo Chicken Pizza",
+								"description": "buff chix (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 12.00,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 14.00,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 20.00,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "12.99"
 						},
 						{
-							"itemId": "tea",
+							"itemId": "veggie_pizza",
 							"labels": {
-								"displayName": "Tea",
-								"description": "Oolong or black tea served in a teapot.",
+								"displayName": "Vegetarian Pizza",
+								"description": "veggie pizza (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 12.00,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 14.00,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 20.00,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "2.00"
 						},
 						{
-							"itemId": "coffee",
+							"itemId": "meat_lovers_pizza",
 							"labels": {
-								"displayName": "Coffee",
-								"description": "Coffee served with milk or cream and sugar.",
+								"displayName": "Meat Lover's Pizza",
+								"description": "meat lover's (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 14.00,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 16.00,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 21.00,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "2.00"
 						},
 						{
-							"itemId": "orange_juice",
+							"itemId": "mediterranean_pizza",
 							"labels": {
-								"displayName": "Orange Juice",
-								"description": "Freshly sqeezed orange juice.",
+								"displayName": "Mediterranean Pizza",
+								"description": "mediterranean (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 12.00,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 14.00,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 20.00,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "1.75"
 						}
@@ -286,6 +712,330 @@
 				"photoURL": "https://images.pexels.com/photos/5317/food-salad-restaurant-person.jpg?w=1260&h=750&auto=compress&cs=tinysrgb"
 			},
 			"menuLists": {
+				"manakish": {
+					"labels": {
+						"displayName": "Manakish",
+						"description": "Traditional Syrian flat bread",
+						"photoURL": ""
+					},
+					"items": [
+						{
+							"itemId": "cheese_manakish",
+							"labels": {
+								"displayName": "Cheese Manakish",
+								"description": "cheese manakish (description)",
+								"photoURL": ""
+							},
+							"price": "10.00"
+						},
+						{
+							"itemId": "zaatar",
+							"labels": {
+								"displayName": "Za'atar",
+								"description": "za'atar (description)",
+								"photoURL": ""
+							},
+							"price": "10.00"
+						},
+						{
+							"itemId": "lahm_biajin",
+							"labels": {
+								"displayName": "Lahm Biajin",
+								"description": "lahm biajin (description)",
+								"photoURL": ""
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "spinach_manakish",
+							"labels": {
+								"displayName": "Spinach Manakish",
+								"description": "spinach manakish (description)",
+								"photoURL": "spinach_manakish.jpeg"
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "pepperoni_beef_manakish",
+							"labels": {
+								"displayName": "Pepperoni Beef Manakish",
+								"description": "pepperoni beef (description)",
+								"photoURL": "pepperoni_beef_manakish.jpeg"
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "nutella_manakish",
+							"labels": {
+								"displayName": "Nutella Manakish",
+								"description": "nutella manakish (description)",
+								"photoURL": ""
+							},
+							"price": "10.00"
+						}
+					]
+				},
+				"specialty_plates": {
+					"labels": {
+						"displayName": "Specialty Plates",
+						"description": "All plates include garlic sauce, hummus, french fries, or rice, and a salad.",
+						"photoURL": ""
+					},
+					"items": [
+						{
+							"itemId": "chix_shawarma_plate",
+							"labels": {
+								"displayName": "Chicken Shawarma",
+								"description": "chix shawarma (description)",
+								"photoURL": "chix_shawarma_combo.jpeg"
+							},
+							"price": "12.00"
+						},
+						{
+							"itemId": "lamb_shawarma_plate",
+							"labels": {
+								"displayName": "Lamb Shawarma",
+								"description": "lamb shawarma (description)",
+								"photoURL": ""
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "beef_shawarma_plate",
+							"labels": {
+								"displayName": "Beef Shawarma",
+								"description": "beef shawarma (description)",
+								"photoURL": ""
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "chix_kabab_plate",
+							"labels": {
+								"displayName": "Chicken Kabab",
+								"description": "chix kabab (description)",
+								"photoURL": ""
+							},
+							"price": "12.00"
+						},
+						{
+							"itemId": "beef_kabab_plate",
+							"labels": {
+								"displayName": "Beef Kabab",
+								"description": "beef kabab (description)",
+								"photoURL": ""
+							},
+							"price": "14.00"
+						},
+						{
+							"itemId": "mex_grill_kabab",
+							"labels": {
+								"displayName": "Mex Grill Kabab",
+								"description": "mex grill (description)",
+								"photoURL": "mex_grill_kabab.jpeg"
+							},
+							"price": "17.99"
+						},
+						{
+							"itemId": "tarboosh_burger",
+							"labels": {
+								"displayName": "Tarboosh Burger",
+								"description": "Black angus burger served with cocktail sauce.",
+								"photoURL": ""
+							},
+							"price": "10.00"
+						},
+						{
+							"itemId": "veggie_combo",
+							"labels": {
+								"displayName": "Veggie Combo",
+								"description": "veggie combo (description)",
+								"photoURL": ""
+							},
+							"price": "10.99"
+						},
+						{
+							"itemId": "falafel_combo",
+							"labels": {
+								"displayName": "Falafel",
+								"description": "The world's best Falafel.",
+								"photoURL": "falafel_combo.jpeg"
+							},
+							"price": "12.00"
+						},
+						{
+							"itemId": "lamb_shank",
+							"labels": {
+								"displayName": "Lamb Shank",
+								"description": "lamb shank (description)",
+								"photoURL": ""
+							},
+							"price": "19.99"
+						}
+					]
+				},
+				"roll_ups": {
+					"labels": {
+						"displayName": "Roll Ups",
+						"description": "Regular / Spicy",
+						"photoURL": ""
+					},
+					"items": [
+						{
+							"itemId": "chix_shawarma_rollup",
+							"labels": {
+								"displayName": "Chicken Shawarma",
+								"description": "chix shawarma (description)",
+								"photoURL": ""
+							},
+							"price": "7.50"
+						},
+						{
+							"itemId": "lamb_shawarma_rollup",
+							"labels": {
+								"displayName": "Lamb Shawarma",
+								"description": "lamb shawarma (description)",
+								"photoURL": ""
+							},
+							"price": "8.99"
+						},
+						{
+							"itemId": "beef_shawarma_rollup",
+							"labels": {
+								"displayName": "Beef Shawarma",
+								"description": "beef shawarma (description)",
+								"photoURL": ""
+							},
+							"price": "8.99"
+						},
+						{
+							"itemId": "chicken_kabab_rollup",
+							"labels": {
+								"displayName": "Chicken Kabab",
+								"description": "chix kabab rollup (description)",
+								"photoURL": ""
+							},
+							"price": "8.50"
+						},
+						{
+							"itemId": "beef_kabab_rollup",
+							"labels": {
+								"displayName": "Beef Kabab Rollup",
+								"description": "beef kabab rollup (description)",
+								"photoURL": ""
+							},
+							"price": "8.50"
+						},
+						{
+							"itemId": "falafel_rollup",
+							"labels": {
+								"displayName": "Falafel",
+								"description": "falafel rollup (description)",
+								"photoURL": ""
+							},
+							"price": "7.00"
+						}
+					]
+				},
+				"apps_n_salads": {
+					"labels": {
+						"displayName": "Appetizers / Salads",
+						"description": "apps & salads (description)",
+						"photoURL": ""
+					},
+					"items": [
+						{
+							"itemId": "fattush_salad",
+							"labels": {
+								"displayName": "Fattush",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "8.00"
+						},
+						{
+							"itemId": "greek_salad",
+							"labels": {
+								"displayName": "Greek Salad",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "8.00"
+						},
+						{
+							"itemId": "syrian_salad",
+							"labels": {
+								"displayName": "Syrian Salad",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "8.00"
+						},
+						{
+							"itemId": "tabule_salad",
+							"labels": {
+								"displayName": "Tabule Salad",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "7.00"
+						},
+						{
+							"itemId": "hummus_salad",
+							"labels": {
+								"displayName": "Hummus",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "6.00"
+						},
+						{
+							"itemId": "babaganush",
+							"labels": {
+								"displayName": "Babaganush",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "7.00"
+						},
+						{
+							"itemId": "french_fries",
+							"labels": {
+								"displayName": "French Fries",
+								"description": "french fries (description)",
+								"photoURL": ""
+							},
+							"price": "5.00"
+						},
+						{
+							"itemId": "chicken_wings",
+							"labels": {
+								"displayName": "Chicken Wings",
+								"description": "chix wings (description)",
+								"photoURL": ""
+							},
+							"price": "10.00"
+						},
+						{
+							"itemId": "mozz_sticks",
+							"labels": {
+								"displayName": "Mozzerella Sticks",
+								"description": "",
+								"photoURL": ""
+							},
+							"price": "6.99"
+						},
+						{
+							"itemId": "falafel_balls",
+							"labels": {
+								"displayName": "Falafel Balls",
+								"description": "falafel balls (description)",
+								"photoURL": ""
+							},
+							"price": "5.99"
+						}
+					]
+				},
 				"beverages": {
 					"labels": {
 						"displayName": "Beverages",
@@ -303,9 +1053,9 @@
 							"price": "2.00"
 						},
 						{
-							"itemId": "decaf_coffee",
+							"itemId": "coffee",
 							"labels": {
-								"displayName": "Decaf Coffee",
+								"displayName": "Coffee",
 								"description": "Coffee served with milk or cream and sugar.",
 								"photoURL": ""
 							},
@@ -358,64 +1108,166 @@
 						}
 					]
 				},
-				"meals": {
+				"pizza": {
 					"labels": {
-						"displayName": "Meals",
-						"description": "What would you like to eat, sir?",
+						"displayName": "Pizza (title)",
+						"description": "Pizza pizza pizza (subtitle)",
 						"photoURL": ""
 					},
 					"items": [
 						{
-							"itemId": "steak",
+							"itemId": "cheese_pizza",
 							"labels": {
-								"displayName": "Steak",
-								"description": "Fried steak served with garlic mashed potatoes and spinach.",
+								"displayName": "Cheese Pizza",
+								"description": "Cheese pizza (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 9.99,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 12.99,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 14.99,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "22.99"
 						},
 						{
-							"itemId": "pasta",
+							"itemId": "pepperoni_pizza",
 							"labels": {
-								"displayName": "Pasta",
-								"description": "A hot mess of pasta served with butter and garlic.",
+								"displayName": "Pepperoni Pizza",
+								"description": "Pepperoni pizza (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 12.00,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 14.00,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 19.00,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "14.00"
 						},
 						{
-							"itemId": "tacos",
+							"itemId": "buffalo_chix_pizza",
 							"labels": {
-								"displayName": "Tacos",
-								"description": "A beautiful array of waffle shelled tacos with your choice of toppings.",
+								"displayName": "Buffalo Chicken Pizza",
+								"description": "buff chix (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 12.00,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 14.00,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 20.00,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "12.99"
 						},
 						{
-							"itemId": "tea",
+							"itemId": "veggie_pizza",
 							"labels": {
-								"displayName": "Tea",
-								"description": "Oolong or black tea served in a teapot.",
+								"displayName": "Vegetarian Pizza",
+								"description": "veggie pizza (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 12.00,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 14.00,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 20.00,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "2.00"
 						},
 						{
-							"itemId": "coffee",
+							"itemId": "meat_lovers_pizza",
 							"labels": {
-								"displayName": "Coffee",
-								"description": "Coffee served with milk or cream and sugar.",
+								"displayName": "Meat Lover's Pizza",
+								"description": "meat lover's (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 14.00,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 16.00,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 21.00,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "2.00"
 						},
 						{
-							"itemId": "orange_juice",
+							"itemId": "mediterranean_pizza",
 							"labels": {
-								"displayName": "Orange Juice",
-								"description": "Freshly sqeezed orange juice.",
+								"displayName": "Mediterranean Pizza",
+								"description": "mediterranean (description)",
 								"photoURL": ""
+							},
+							"sizes": {
+								"small": {
+									"price": 12.00,
+									"displayName": "Small",
+									"description": "sm pizza"
+								},
+								"medium": {
+									"price": 14.00,
+									"displayName": "Medium",
+									"description": "med pizza"
+								},
+								"large": {
+									"price": 20.00,
+									"displayName": "Large",
+									"description": "lg pizza"
+								}
 							},
 							"price": "1.75"
 						}

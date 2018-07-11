@@ -52,6 +52,7 @@ const MenuItem = (props) => {
 	const onClick = (e) => {
 		e.preventDefault();
 		props.selectItem(props.item);
+		console.log("ITEM SELECTED: ", props.item)
 		props.openModal();
 	};
 

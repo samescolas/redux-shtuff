@@ -21,4 +21,9 @@ export const screens = {
 	phone: 600,
 	tablet: 768,
 	pc: 900,
-}
+};
+
+export const stripe = {
+	public_key: '',
+	private_key: 'sk_test_Jqw58aJ5WsOPvTxePlEJOOo3'
+};

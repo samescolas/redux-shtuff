@@ -19,11 +19,11 @@ class CategoryList extends Component {
 	onCategoryClick = (e) => {
 		const { filterMenu } = this.props;
 
-		if (e.target.innerHTML.toLowerCase() === 'all') {
+		if (e.target.id === 'all') {
 			filterMenu(null);
 			e.preventDefault();
 		} else {
-			filterMenu(e.target.innerHTML.toLowerCase());
+			filterMenu(e.target.id);
 			e.preventDefault();
 		}
 	};
@@ -49,7 +49,7 @@ class CategoryList extends Component {
 			`;
 
 			return (
-				<Category onClick={this.onCategoryClick} key={i}>
+				<Category id={i.toLowerCase()} onClick={this.onCategoryClick} key={i}>
 					{i === 'All' ? 'All' : menu.menuLists[i].labels.displayName}
 				</Category>
 			);

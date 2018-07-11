@@ -16,7 +16,8 @@ export const getMenu = () => (dispatch) => {
 				Object.keys(menu[m]).forEach(s => {
 					Object.keys(menu[m][s].menuLists).forEach(c => {
 						menu[m][s].menuLists[c].items.map(i => {
-							let newItem = Object.assign(i, {imageURL: getRandomImage()});
+							console.log(Object.keys(i.labels.photoURL))
+							let newItem = Object.assign(i, {imageURL: i.labels.photoURL || getRandomImage()});
 							return newItem;
 						})
 					})
