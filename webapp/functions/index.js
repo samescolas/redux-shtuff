@@ -11,6 +11,7 @@ const currency = functions.config().stripe.currency || 'USD';
  // Create and Deploy Your First Cloud Functions
  // https://firebase.google.com/docs/functions/write-firebase-functions
 
+// This was taken directly from the firebase/Stripe function-examples here:
 // SOURCE: https://github.com/firebase/functions-samples/blob/master/stripe/functions/index.js#L25
 exports.createStripeCharge = functions.database.ref(`/stripe_customers/{userId}/charges/{id}`)
     .onCreate((snap, context) => {
@@ -22,6 +23,7 @@ exports.createStripeCharge = functions.database.ref(`/stripe_customers/{userId}/
           }).then((customer) => {
             // Create a charge using the pushId as the idempotency key
             // protecting against double charges
+
             const amount = val.amount;
             const idempotencyKey = context.params.id;
             const charge = {amount, currency, customer};

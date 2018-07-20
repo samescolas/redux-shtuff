@@ -21,7 +21,7 @@ const MenuItem = (props) => {
 	`;
 	const Image = styled.img`
 		width: 45%;
-		max-height: 220px;
+		max-height: 180px;
 		min-height: 120px;
 		float: right;
 	`;

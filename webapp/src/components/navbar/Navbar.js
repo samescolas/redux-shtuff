@@ -68,7 +68,7 @@ class Navbar extends Component {
 			width: 22%;
 			font-size: 2.2vmin;
 			float: right;
-			transition: background-color 0.42s ease-out, color 0.7s ease-out;
+			transition: background-color 0.22s ease-out, color 0.3s ease-out;
 			background-color: ${active ? colors.navBgActive : colors.navBg};
 			color: ${active ? colors.navFgActive : colors.navFg};
 			text-shadow: ${active ? '1px 1px 2px' : ''};

@@ -66,6 +66,7 @@ class CategoryList extends Component {
 			overflow: hidden;
 			top: 7vh;
 			position: fixed;
+			padding-top: 10%;
 			display: flex;
 			flex-direction: column;
 			color: ${colors.catsFg};
@@ -92,7 +93,7 @@ class CategoryList extends Component {
 		return (
 			<div>
 				<Container id="category-list">
-					<Title>{menu.labels.displayName}</Title>
+					{/*<Title>{menu.labels.displayName}</Title>*/}
 					<CategoryList>
 						{ this.renderList() }
 					</CategoryList>
