@@ -14,3 +14,6 @@ export const SELECT_MENU_ITEM = 'select_menu_item';
 export const TOGGLE_CART = 'toggle_cart';
 export const TOGGLE_FILTER = 'toggle_filter';
 export const TOGGLE_MENU_ITEM_MODAL = 'toggle_menu_item_modal';
+
+// FAX ACTIONS
+export const SEND_FAX = 'send_fax';
