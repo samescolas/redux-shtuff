@@ -80,15 +80,19 @@ class CartContainer extends Component {
 	}
 	*/
 
-	onPressWhenOpen = ({ key }) => {
-		if (key === 'Escape' || key === 'c') {
-			this.closeNav();
+	onPressWhenOpen = (e) => {
+		if (e.target.type === undefined) {
+			if (e.key === 'Escape' || e.key === 'c') {
+				this.closeNav();
+			}
 		}
 	}
 
-	onPressWhenClosed = ({ key }) => {
-		if (window.innerWidth > screens.tablet && key === 'c') {
-			this.openNav();
+	onPressWhenClosed = (e) => {
+		if (e.target.type === undefined) {
+			if (window.innerWidth > screens.tablet && e.key === 'c') {
+				this.openNav();
+			}
 		}
 	}
 
