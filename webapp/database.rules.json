@@ -1,6 +1,10 @@
 {
   "rules": {
-    "stripe_customers": {
+	"menu": {
+		".read": true,
+		".write": false
+	},
+    "customers": {
       "$uid": {
         ".read": "$uid === auth.uid",
         "sources": {

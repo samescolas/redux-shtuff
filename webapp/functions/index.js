@@ -8,16 +8,36 @@ admin.initializeApp();
 const stripe = require('stripe')(functions.config().stripe.token);
 const currency = functions.config().stripe.currency || 'USD';
 
+const twilio = require('twilio');
+const accountSid = 'ACf5211f1f374813741cac38df598da18d';
+const authToken = '38f50421f060b7c6f66dc8872b47a275';
+const client = twilio(accountSid, authToken);
+const twilioNumber = '';
+const tarbooshFaxNo = '';
+
+/exports.sendOrderFax = functions.database.ref(`/customers/{userId}/orders/{id}`)
+	.onCreate((snap, context) => {
+		const val = snap.val();
+
+      return admin.database().ref(`/customers/${context.params.userId}/customer_id`)
+          .once('value').then((snapshot) => {
+						return snapshot.val();
+					}).then((customer) => {
+						
+						const faxBody = val.menuItems
+					})
+	});
+
  // Create and Deploy Your First Cloud Functions
  // https://firebase.google.com/docs/functions/write-firebase-functions
 
 // This was taken directly from the firebase/Stripe function-examples here:
 // SOURCE: https://github.com/firebase/functions-samples/blob/master/stripe/functions/index.js#L25
-exports.createStripeCharge = functions.database.ref(`/stripe_customers/{userId}/charges/{id}`)
+exports.createStripeCharge = functions.database.ref(`/customers/{userId}/charges/{id}`)
     .onCreate((snap, context) => {
       const val = snap.val();
       // Look up the Stripe customer id written in createStripeCustomer
-      return admin.database().ref(`/stripe_customers/${context.params.userId}/customer_id`)
+      return admin.database().ref(`/customers/${context.params.userId}/customer_id`)
           .once('value').then((snapshot) => {
             return snapshot.val();
           }).then((customer) => {
@@ -47,18 +67,18 @@ exports.createStripeCustomer = functions.auth.user().onCreate((user) => {
   return stripe.customers.create({
     email: user.email,
   }).then((customer) => {
-    return admin.database().ref(`/stripe_customers/${user.uid}/customer_id`).set(customer.id);
+    return admin.database().ref(`/customers/${user.uid}/customer_id`).set(customer.id);
   });
 });
 
 // Add a payment source (card) for a user by writing a stripe payment source token to Realtime database
 exports.addPaymentSource = functions.database
-    .ref('/stripe_customers/{userId}/sources/{pushId}/token').onWrite((change, context) => {
+    .ref('/customers/{userId}/sources/{pushId}/token').onWrite((change, context) => {
       const source = change.after.val();
       if (source === null){
         return null;
       }
-      return admin.database().ref(`/stripe_customers/${context.params.userId}/customer_id`)
+      return admin.database().ref(`/customers/${context.params.userId}/customer_id`)
           .once('value').then((snapshot) => {
             return snapshot.val();
           }).then((customer) => {
@@ -75,13 +95,13 @@ exports.addPaymentSource = functions.database
 
 // When a user deletes their account, clean up after them
 exports.cleanupUser = functions.auth.user().onDelete((user) => {
-  return admin.database().ref(`/stripe_customers/${user.uid}`).once('value').then(
+  return admin.database().ref(`/customers/${user.uid}`).once('value').then(
       (snapshot) => {
         return snapshot.val();
       }).then((customer) => {
         return stripe.customers.del(customer.customer_id);
       }).then(() => {
-        return admin.database().ref(`/stripe_customers/${user.uid}`).remove();
+        return admin.database().ref(`/customers/${user.uid}`).remove();
       });
     });
 
