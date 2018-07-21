@@ -20,7 +20,10 @@ class UserContainer extends Component {
   	auth.onAuthStateChanged((user) => {
 			if (user !== null) {
 				this.props.authorize_user(user);
-			} else if (page !== 'menu' && page !== '') {
+			} else  {
+				auth.signInAnonymously()
+			}
+			if (user === null && page !== 'menu' && page !== '') {
 				this.props.history.push('signin');
 			}
 		});
@@ -31,4 +34,8 @@ class UserContainer extends Component {
 	}
 };
 
-export default withRouter(connect(null, { authorize_user })(UserContainer));
+const mapStateToProps = ({ auth }) => {
+	return { user: auth.user };
+}
+
+export default withRouter(connect(mapStateToProps, { authorize_user })(UserContainer));
