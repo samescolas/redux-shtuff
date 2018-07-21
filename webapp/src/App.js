@@ -22,6 +22,7 @@ import Signin from './components/auth/Signin';
 import Signout from './components/auth/Signout';
 import Home from './components/Home';
 import Profile from './components/Profile';
+import Checkout from './components/checkout/Checkout';
 
 import NewPaymentSource from './components/payments/NewPaymentSource';
 
@@ -51,6 +52,7 @@ const App = () => {
 										<Route path='/signup' component={FirebaseAuth} />
 										<Route path='/signout' component={Signout} />
 										<Route path='/creditcard' component={NewPaymentSource} />
+										<Route path='/checkout' component={Checkout} />
 									</Switch>
 								</div>
 							</UserContainer>
