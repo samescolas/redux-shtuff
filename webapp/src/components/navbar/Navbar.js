@@ -37,6 +37,9 @@ class Navbar extends Component {
 			} else if (e.key === 'h') {
 				this.props.history.push('/');
 				e.preventDefault();
+			} else if (e.key === 'o') {
+				this.props.history.push('orders');
+				e.preventDefault();
 			} else if (e.key === 'p' && this.props.auth.isLoggedIn) {
 				this.props.history.push('profile');
 				e.preventDefault();
