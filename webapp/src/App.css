@@ -33,6 +33,27 @@
 	transition: .4s;
 }
 
+#home-container button {
+	position: fixed;
+	bottom: 10%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 10%;
+	height: 7%;
+	background-color: white;
+	color: #333;
+	border: none;
+	border-radius: 4%;
+	font-family: 'Ubuntu', 'sans-serif';
+}
+
+#home-img {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0
+}
+
 .App-intro {
   font-size: large;
 }
