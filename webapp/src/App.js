@@ -53,6 +53,7 @@ const App = () => {
 										<Route path='/signout' component={Signout} />
 										<Route path='/creditcard' component={NewPaymentSource} />
 										<Route path='/checkout' component={Checkout} />
+										<Route path='/' component={Home} />
 									</Switch>
 								</div>
 							</UserContainer>

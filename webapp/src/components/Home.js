@@ -1,16 +1,13 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 const Home = (props) => {
 	return (
-		<div className="App">
-			<div className="App-header">
-				<h2>Welcome to React</h2>
-			</div>
-			<p className="App-intro">
-				To get started, edit <code>src/App.js</code> and save to reload.
-			</p>
+		<div id="home-container" className="App">
+			<img id="home-img" src="falafel_combo.jpeg" />
+			<button onClick={() => props.history.push('menu')}>Order now!</button>
 		</div>
 	);
 };
 
-export default Home;
+export default withRouter(Home);
